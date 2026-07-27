@@ -1,0 +1,1186 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/api/v1/configs": {
+      "get": {
+        "operationId": "ConfigController_findMany_v1",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "Page number",
+            "schema": {
+              "default": 1,
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Items per page",
+            "schema": {
+              "default": 20,
+              "type": "number"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Global text search",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortBy",
+            "required": false,
+            "in": "query",
+            "description": "Field to sort by",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortOrder",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "default": "asc",
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "description": "Filter by status",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ACTIVE",
+                "INACTIVE"
+              ]
+            }
+          },
+          {
+            "name": "configGroup",
+            "required": false,
+            "in": "query",
+            "description": "Filter by config group",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/PageResult"
+                    },
+                    {
+                      "properties": {
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/ConfigEntity"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get many configs",
+        "tags": [
+          "Configs"
+        ]
+      },
+      "post": {
+        "operationId": "ConfigController_create_v1",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateConfigContract"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConfigEntity"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create a new config",
+        "tags": [
+          "Configs"
+        ]
+      }
+    },
+    "/api/v1/configs/{id}": {
+      "get": {
+        "operationId": "ConfigController_findById_v1",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConfigEntity"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get config by id",
+        "tags": [
+          "Configs"
+        ]
+      },
+      "patch": {
+        "operationId": "ConfigController_update_v1",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateConfigContract"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConfigEntity"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Update a config",
+        "tags": [
+          "Configs"
+        ]
+      },
+      "delete": {
+        "operationId": "ConfigController_remove_v1",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "summary": "Delete a config",
+        "tags": [
+          "Configs"
+        ]
+      }
+    },
+    "/api/v1/configs/group/{configGroup}": {
+      "get": {
+        "operationId": "ConfigController_findActiveByGroup_v1",
+        "parameters": [
+          {
+            "name": "configGroup",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ConfigEntity"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get active configs by group",
+        "tags": [
+          "Configs"
+        ]
+      }
+    },
+    "/api/v1/countries": {
+      "get": {
+        "operationId": "CountryController_findMany_v1",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "Page number",
+            "schema": {
+              "default": 1,
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Items per page",
+            "schema": {
+              "default": 20,
+              "type": "number"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Global text search",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortBy",
+            "required": false,
+            "in": "query",
+            "description": "Field to sort by",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortOrder",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "default": "asc",
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/PageResult"
+                    },
+                    {
+                      "properties": {
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/CountryEntity"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get many countries",
+        "tags": [
+          "Countries"
+        ]
+      },
+      "post": {
+        "operationId": "CountryController_create_v1",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCountryContract"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CountryEntity"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create a new country",
+        "tags": [
+          "Countries"
+        ]
+      }
+    },
+    "/api/v1/countries/{id}": {
+      "get": {
+        "operationId": "CountryController_findById_v1",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CountryEntity"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get country by id",
+        "tags": [
+          "Countries"
+        ]
+      },
+      "patch": {
+        "operationId": "CountryController_update_v1",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCountryContract"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CountryEntity"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Update a country",
+        "tags": [
+          "Countries"
+        ]
+      },
+      "delete": {
+        "operationId": "CountryController_remove_v1",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "summary": "Delete a country",
+        "tags": [
+          "Countries"
+        ]
+      }
+    },
+    "/api/v1/provinces": {
+      "get": {
+        "operationId": "ProvinceController_findMany_v1",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "Page number",
+            "schema": {
+              "default": 1,
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Items per page",
+            "schema": {
+              "default": 20,
+              "type": "number"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Global text search",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortBy",
+            "required": false,
+            "in": "query",
+            "description": "Field to sort by",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortOrder",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "default": "asc",
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          },
+          {
+            "name": "countryId",
+            "required": false,
+            "in": "query",
+            "description": "Filter by country id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/PageResult"
+                    },
+                    {
+                      "properties": {
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/ProvinceEntity"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get many provinces",
+        "tags": [
+          "Provinces"
+        ]
+      },
+      "post": {
+        "operationId": "ProvinceController_create_v1",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateProvinceContract"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProvinceEntity"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create a new province",
+        "tags": [
+          "Provinces"
+        ]
+      }
+    },
+    "/api/v1/provinces/{id}": {
+      "get": {
+        "operationId": "ProvinceController_findById_v1",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProvinceEntity"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get province by id",
+        "tags": [
+          "Provinces"
+        ]
+      },
+      "patch": {
+        "operationId": "ProvinceController_update_v1",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProvinceContract"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProvinceEntity"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Update a province",
+        "tags": [
+          "Provinces"
+        ]
+      },
+      "delete": {
+        "operationId": "ProvinceController_remove_v1",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "summary": "Delete a province",
+        "tags": [
+          "Provinces"
+        ]
+      }
+    },
+    "/api/v1/cities": {
+      "get": {
+        "operationId": "CityController_findMany_v1",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "Page number",
+            "schema": {
+              "default": 1,
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Items per page",
+            "schema": {
+              "default": 20,
+              "type": "number"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Global text search",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortBy",
+            "required": false,
+            "in": "query",
+            "description": "Field to sort by",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortOrder",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "default": "asc",
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          },
+          {
+            "name": "provinceId",
+            "required": false,
+            "in": "query",
+            "description": "Filter by province id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/PageResult"
+                    },
+                    {
+                      "properties": {
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/CityEntity"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get many cities",
+        "tags": [
+          "Cities"
+        ]
+      },
+      "post": {
+        "operationId": "CityController_create_v1",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCityContract"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CityEntity"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create a new city",
+        "tags": [
+          "Cities"
+        ]
+      }
+    },
+    "/api/v1/cities/{id}": {
+      "get": {
+        "operationId": "CityController_findById_v1",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CityEntity"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get city by id",
+        "tags": [
+          "Cities"
+        ]
+      },
+      "patch": {
+        "operationId": "CityController_update_v1",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCityContract"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CityEntity"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Update a city",
+        "tags": [
+          "Cities"
+        ]
+      },
+      "delete": {
+        "operationId": "CityController_remove_v1",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "summary": "Delete a city",
+        "tags": [
+          "Cities"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "WMS Revamp API",
+    "description": "Warehouse Management System (WMS) Revamp REST API Documentation",
+    "version": "1.0.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "securitySchemes": {
+      "Bearer": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http",
+        "name": "Authorization",
+        "description": "Enter JWT access token",
+        "in": "header"
+      }
+    },
+    "schemas": {
+      "PageResult": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "number"
+          },
+          "limit": {
+            "type": "number"
+          },
+          "totalItems": {
+            "type": "number"
+          },
+          "totalPages": {
+            "type": "number"
+          },
+          "hasPreviousPage": {
+            "type": "boolean"
+          },
+          "hasNextPage": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "page",
+          "limit",
+          "totalItems",
+          "totalPages",
+          "hasPreviousPage",
+          "hasNextPage"
+        ]
+      },
+      "ConfigEntity": {
+        "type": "object",
+        "properties": {}
+      },
+      "CreateConfigContract": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "The unique code for the config"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the config"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the config"
+          },
+          "configGroup": {
+            "type": "string",
+            "description": "The group this config belongs to"
+          },
+          "optionType": {
+            "type": "string",
+            "enum": [
+              "SELECT",
+              "RADIO",
+              "CHECKBOX"
+            ],
+            "description": "The type of option"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "INACTIVE"
+            ],
+            "description": "The status of the config"
+          }
+        },
+        "required": [
+          "code",
+          "name",
+          "configGroup",
+          "optionType",
+          "status"
+        ]
+      },
+      "UpdateConfigContract": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the config"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the config"
+          },
+          "optionType": {
+            "type": "string",
+            "enum": [
+              "SELECT",
+              "RADIO",
+              "CHECKBOX"
+            ],
+            "description": "The type of option"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "INACTIVE"
+            ],
+            "description": "The status of the config"
+          }
+        }
+      },
+      "CountryEntity": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "code",
+          "name"
+        ]
+      },
+      "CreateCountryContract": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "The unique code for the country"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the country"
+          }
+        },
+        "required": [
+          "code",
+          "name"
+        ]
+      },
+      "UpdateCountryContract": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "The unique code for the country"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the country"
+          }
+        }
+      },
+      "ProvinceEntity": {
+        "type": "object",
+        "properties": {}
+      },
+      "CreateProvinceContract": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "The unique code for the province"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the province"
+          },
+          "countryId": {
+            "type": "string",
+            "description": "The id of the country"
+          }
+        },
+        "required": [
+          "code",
+          "name",
+          "countryId"
+        ]
+      },
+      "UpdateProvinceContract": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "The unique code for the province"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the province"
+          },
+          "countryId": {
+            "type": "string",
+            "description": "The id of the country"
+          }
+        }
+      },
+      "CityEntity": {
+        "type": "object",
+        "properties": {}
+      },
+      "CreateCityContract": {
+        "type": "object",
+        "properties": {
+          "provinceId": {
+            "type": "string",
+            "description": "The id of the province"
+          },
+          "code": {
+            "type": "string",
+            "description": "The unique code for the city"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the city"
+          }
+        },
+        "required": [
+          "provinceId",
+          "code",
+          "name"
+        ]
+      },
+      "UpdateCityContract": {
+        "type": "object",
+        "properties": {
+          "provinceId": {
+            "type": "string",
+            "description": "The id of the province"
+          },
+          "code": {
+            "type": "string",
+            "description": "The unique code for the city"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the city"
+          }
+        }
+      }
+    }
+  }
+}

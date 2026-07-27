@@ -1,0 +1,17 @@
+export const CacheTTL = {
+  ONE_MINUTE: 60,
+  FIVE_MINUTES: 60 * 5,
+  TEN_MINUTES: 60 * 10,
+  FIFTEEN_MINUTES: 60 * 15,
+  THIRTY_MINUTES: 60 * 30,
+  ONE_HOUR: 60 * 60,
+  SIX_HOURS: 60 * 60 * 6,
+  TWELVE_HOURS: 60 * 60 * 12,
+  ONE_DAY: 60 * 60 * 24,
+  CONFIG: 60 * 60,
+  COUNTRY: 60 * 60,
+  PROVINCE: 60 * 60,
+  CITY: 60 * 60,
+  COMPANY: 60 * 60,
+  BRANCH: 60 * 60,
+} as const;

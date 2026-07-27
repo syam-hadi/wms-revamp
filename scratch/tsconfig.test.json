@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "ES2023",
+    "useDefineForClassFields": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "strict": true
+  }
+}

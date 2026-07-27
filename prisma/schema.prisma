@@ -1,0 +1,97 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Status {
+  ACTIVE
+  INACTIVE
+}
+
+enum UserType {
+  EMPLOYEE
+  VENDOR
+  CUSTOMER
+}
+
+model Config {
+  id          String  @id @default(uuid()) @db.Uuid
+  code        String  @db.VarChar(20)
+  name        String  @db.VarChar(150)
+  description String? @db.VarChar(100)
+  configGroup String  @map("config_group") @db.VarChar(50)
+  optionType  String  @map("option_type") @db.VarChar(20)
+  status      Status  @default(ACTIVE)
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  createdBy String?   @map("created_by") @db.Uuid
+  updatedAt DateTime? @updatedAt @map("updated_at")
+  updatedBy String?   @map("updated_by") @db.Uuid
+  deletedAt DateTime? @map("deleted_at")
+  deletedBy String?   @map("deleted_by") @db.Uuid
+
+  @@unique([configGroup, code])
+  @@index([configGroup])
+  @@index([status])
+  @@index([configGroup, status])
+  @@map("m_configs")
+}
+
+model Country {
+  id   String @id @default(uuid()) @db.Uuid
+  code String @unique @db.VarChar(5)
+  name String @db.VarChar(150)
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  createdBy String?   @map("created_by") @db.Uuid
+  updatedAt DateTime? @updatedAt @map("updated_at")
+  updatedBy String?   @map("updated_by") @db.Uuid
+  deletedAt DateTime? @map("deleted_at")
+  deletedBy String?   @map("deleted_by") @db.Uuid
+
+  provinces Province[]
+
+  @@map("m_countries")
+}
+
+model Province {
+  id        String @id @default(uuid()) @db.Uuid
+  countryId String @map("m_country_id") @db.Uuid
+  code      String @db.VarChar(5)
+  name      String @db.VarChar(150)
+
+  country Country @relation(fields: [countryId], references: [id])
+  cities  City[]
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  createdBy String?   @map("created_by") @db.Uuid
+  updatedAt DateTime? @updatedAt @map("updated_at")
+  updatedBy String?   @map("updated_by") @db.Uuid
+  deletedAt DateTime? @map("deleted_at")
+  deletedBy String?   @map("deleted_by") @db.Uuid
+
+  @@unique([countryId, code])
+  @@map("m_provinces")
+}
+
+model City {
+  id         String @id @default(uuid()) @db.Uuid
+  provinceId String @map("m_province_id") @db.Uuid
+  code       String @db.VarChar(20)
+  name       String @db.VarChar(150)
+
+  province Province @relation(fields: [provinceId], references: [id])
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  createdBy String?   @map("created_by") @db.Uuid
+  updatedAt DateTime? @updatedAt @map("updated_at")
+  updatedBy String?   @map("updated_by") @db.Uuid
+  deletedAt DateTime? @map("deleted_at")
+  deletedBy String?   @map("deleted_by") @db.Uuid
+
+  @@unique([provinceId, code])
+  @@map("m_cities")
+}
