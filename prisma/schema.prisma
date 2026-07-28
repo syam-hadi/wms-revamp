@@ -131,3 +131,26 @@ model Tax {
 
   @@map("m_taxes")
 }
+
+model Commodity {
+  id              String   @id @default(uuid()) @db.Uuid
+  code            String   @unique @db.VarChar(20)
+  name            String   @unique @db.VarChar(100)
+  hsCode          String?  @map("hs_code") @db.VarChar(12)
+  category        String   @db.VarChar(50)
+  isHazardous     Boolean  @map("is_hazardous")
+  imdgClass       String?  @map("imdg_class") @db.VarChar(10)
+  requiresReefer  Boolean  @map("requires_reefer")
+  minTemperature  Decimal? @map("min_temperature") @db.Decimal(4, 2)
+  maxTemperature  Decimal? @map("max_temperature") @db.Decimal(4, 2)
+  remarks         String?  @db.VarChar(255)
+
+  createdAt       DateTime  @default(now()) @map("created_at")
+  createdBy       String?   @map("created_by") @db.Uuid
+  updatedAt       DateTime? @updatedAt @map("updated_at")
+  updatedBy       String?   @map("updated_by") @db.Uuid
+  deletedAt       DateTime? @map("deleted_at")
+  deletedBy       String?   @map("deleted_by") @db.Uuid
+
+  @@map("m_commodities")
+}

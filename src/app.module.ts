@@ -6,6 +6,7 @@ import { ProvinceModule } from './modules/master/province/province.module';
 import { CityModule } from './modules/master/city/city.module';
 import { BankModule } from './modules/master/bank/bank.module';
 import { TaxModule } from './modules/master/tax/tax.module';
+import { CommodityModule } from './modules/master/commodity/commodity.module';
 
 import {
   appConfig,
@@ -39,6 +40,7 @@ import { CodeGeneratorModule } from './common/code-generator/code-generator.modu
     CityModule,
     BankModule,
     TaxModule,
+    CommodityModule,
   ],
   providers: [
     {

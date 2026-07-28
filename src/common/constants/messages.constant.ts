@@ -122,4 +122,13 @@ export const Messages = {
     NOT_FOUND: 'Tax not found.',
     DUPLICATE_NAME: 'Tax name already exists.',
   },
+
+  COMMODITY: {
+    CREATED: 'Commodity created successfully.',
+    UPDATED: 'Commodity updated successfully.',
+    DELETED: 'Commodity deleted successfully.',
+
+    NOT_FOUND: 'Commodity not found.',
+    DUPLICATE_NAME: 'Commodity name already exists.',
+  },
 } as const;
