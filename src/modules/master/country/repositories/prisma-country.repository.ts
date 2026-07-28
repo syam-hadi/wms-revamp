@@ -23,8 +23,7 @@ export class PrismaCountryRepository
   async findMany(
     filter: CountryFilterContract,
   ): Promise<PageResult<CountryEntity>> {
-    const where: Prisma.CountryWhereInput = {
-      deletedAt: null,
+    const where: Prisma.CountryWhereInput = this.buildActiveWhere({
       ...(filter.search && {
         OR: [
           {
@@ -41,7 +40,7 @@ export class PrismaCountryRepository
           },
         ],
       }),
-    };
+    });
 
     const [models, totalItems] = await this.prisma.$transaction([
       this.prisma.country.findMany({
@@ -67,10 +66,9 @@ export class PrismaCountryRepository
 
   async findById(id: string): Promise<CountryEntity | null> {
     const model = await this.prisma.country.findFirst({
-      where: {
+      where: this.buildActiveWhere({
         id,
-        deletedAt: null,
-      },
+      }),
     });
 
     return model ? this.toEntity(model) : null;
@@ -78,15 +76,14 @@ export class PrismaCountryRepository
 
   async exists(code: string, excludeId?: string): Promise<boolean> {
     const total = await this.prisma.country.count({
-      where: {
+      where: this.buildActiveWhere({
         code,
-        deletedAt: null,
         ...(excludeId && {
           id: {
             not: excludeId,
           },
         }),
-      },
+      }),
     });
 
     return total > 0;
@@ -129,10 +126,7 @@ export class PrismaCountryRepository
       where: {
         id,
       },
-      data: {
-        deletedAt: new Date(),
-        deletedBy,
-      },
+      data: this.buildSoftDeleteData(deletedBy),
     });
   }
 

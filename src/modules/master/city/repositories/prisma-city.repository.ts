@@ -21,8 +21,7 @@ export class PrismaCityRepository
   }
 
   async findMany(filter: CityFilterContract): Promise<PageResult<CityEntity>> {
-    const where: Prisma.CityWhereInput = {
-      deletedAt: null,
+    const where: Prisma.CityWhereInput = this.buildActiveWhere({
       ...(filter.provinceId && {
         provinceId: filter.provinceId,
       }),
@@ -42,7 +41,7 @@ export class PrismaCityRepository
           },
         ],
       }),
-    };
+    });
 
     const [models, totalItems] = await this.prisma.$transaction([
       this.prisma.city.findMany({
@@ -68,10 +67,9 @@ export class PrismaCityRepository
 
   async findById(id: string): Promise<CityEntity | null> {
     const model = await this.prisma.city.findFirst({
-      where: {
+      where: this.buildActiveWhere({
         id,
-        deletedAt: null,
-      },
+      }),
     });
 
     return model ? this.toEntity(model) : null;
@@ -79,10 +77,9 @@ export class PrismaCityRepository
 
   async findByProvince(provinceId: string): Promise<CityEntity[]> {
     const models = await this.prisma.city.findMany({
-      where: {
+      where: this.buildActiveWhere({
         provinceId,
-        deletedAt: null,
-      },
+      }),
     });
 
     return models.map((model) => this.toEntity(model));
@@ -94,16 +91,15 @@ export class PrismaCityRepository
     excludeId?: string,
   ): Promise<boolean> {
     const total = await this.prisma.city.count({
-      where: {
+      where: this.buildActiveWhere({
         code,
         provinceId,
-        deletedAt: null,
         ...(excludeId && {
           id: {
             not: excludeId,
           },
         }),
-      },
+      }),
     });
 
     return total > 0;
@@ -146,10 +142,7 @@ export class PrismaCityRepository
       where: {
         id,
       },
-      data: {
-        deletedAt: new Date(),
-        deletedBy,
-      },
+      data: this.buildSoftDeleteData(deletedBy),
     });
   }
 

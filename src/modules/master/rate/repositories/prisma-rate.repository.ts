@@ -4,6 +4,7 @@ import { Prisma } from '@prisma/client';
 import { PrismaRepository } from 'src/infrastructure/prisma/prisma.repository';
 import { PrismaService } from 'src/infrastructure/prisma/prisma.service';
 import { PageResult } from 'src/common/models';
+import { DecimalValue } from 'src/common/domain/value-objects';
 
 import { RateFilterContract } from '../contracts/rate-filter.contract';
 import { CreateRateContract } from '../contracts/create-rate.contract';
@@ -21,8 +22,7 @@ export class PrismaRateRepository
   }
 
   async findMany(filter: RateFilterContract): Promise<PageResult<RateEntity>> {
-    const where: Prisma.RateWhereInput = {
-      deletedAt: null,
+    const where: Prisma.RateWhereInput = this.buildActiveWhere({
       ...(filter.currencyCode && {
         currencyCode: filter.currencyCode,
       }),
@@ -32,7 +32,7 @@ export class PrismaRateRepository
           mode: Prisma.QueryMode.insensitive,
         },
       }),
-    };
+    });
 
     const [models, totalItems] = await this.prisma.$transaction([
       this.prisma.rate.findMany({
@@ -58,10 +58,9 @@ export class PrismaRateRepository
 
   async findById(id: string): Promise<RateEntity | null> {
     const model = await this.prisma.rate.findFirst({
-      where: {
+      where: this.buildActiveWhere({
         id,
-        deletedAt: null,
-      },
+      }),
     });
 
     return model ? this.toEntity(model) : null;
@@ -104,10 +103,7 @@ export class PrismaRateRepository
       where: {
         id,
       },
-      data: {
-        deletedAt: new Date(),
-        deletedBy,
-      },
+      data: this.buildSoftDeleteData(deletedBy),
     });
   }
 
@@ -118,7 +114,7 @@ export class PrismaRateRepository
       id: model.id,
       currencyCode: model.currencyCode,
       description: model.description,
-      value: model.value,
+      value: DecimalValue.of(model.value.toString()),
       validFrom: model.validFrom,
       createdAt: model.createdAt,
       createdBy: model.createdBy,

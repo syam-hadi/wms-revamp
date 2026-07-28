@@ -4,6 +4,7 @@ import { Prisma } from '@prisma/client';
 import { PrismaRepository } from 'src/infrastructure/prisma/prisma.repository';
 import { PrismaService } from 'src/infrastructure/prisma/prisma.service';
 import { PageResult } from 'src/common/models';
+import { DecimalValue } from 'src/common/domain/value-objects';
 
 import { TaxFilterContract } from '../contracts/tax-filter.contract';
 import { CreateTaxContract } from '../contracts/create-tax.contract';
@@ -21,8 +22,7 @@ export class PrismaTaxRepository
   }
 
   async findMany(filter: TaxFilterContract): Promise<PageResult<TaxEntity>> {
-    const where: Prisma.TaxWhereInput = {
-      deletedAt: null,
+    const where: Prisma.TaxWhereInput = this.buildActiveWhere({
       ...(filter.search && {
         OR: [
           {
@@ -45,7 +45,7 @@ export class PrismaTaxRepository
           },
         ],
       }),
-    };
+    });
 
     const [models, totalItems] = await this.prisma.$transaction([
       this.prisma.tax.findMany({
@@ -71,10 +71,9 @@ export class PrismaTaxRepository
 
   async findById(id: string): Promise<TaxEntity | null> {
     const model = await this.prisma.tax.findFirst({
-      where: {
+      where: this.buildActiveWhere({
         id,
-        deletedAt: null,
-      },
+      }),
     });
 
     return model ? this.toEntity(model) : null;
@@ -82,15 +81,14 @@ export class PrismaTaxRepository
 
   async existsByName(name: string, excludeId?: string): Promise<boolean> {
     const total = await this.prisma.tax.count({
-      where: {
+      where: this.buildActiveWhere({
         name,
-        deletedAt: null,
         ...(excludeId && {
           id: {
             not: excludeId,
           },
         }),
-      },
+      }),
     });
 
     return total > 0;
@@ -135,10 +133,7 @@ export class PrismaTaxRepository
       where: {
         id,
       },
-      data: {
-        deletedAt: new Date(),
-        deletedBy,
-      },
+      data: this.buildSoftDeleteData(deletedBy),
     });
   }
 
@@ -150,7 +145,7 @@ export class PrismaTaxRepository
       code: model.code,
       name: model.name,
       description: model.description,
-      value: model.value,
+      value: DecimalValue.of(model.value.toString()),
       flagType: model.flagType,
       coa: model.coa,
       taxCode: model.taxCode,

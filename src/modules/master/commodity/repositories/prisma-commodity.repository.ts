@@ -23,8 +23,7 @@ export class PrismaCommodityRepository
   async findMany(
     filter: CommodityFilterContract,
   ): Promise<PageResult<CommodityEntity>> {
-    const where: Prisma.CommodityWhereInput = {
-      deletedAt: null,
+    const where: Prisma.CommodityWhereInput = this.buildActiveWhere({
       ...(filter.isHazardous !== undefined && {
         isHazardous: filter.isHazardous,
       }),
@@ -44,7 +43,7 @@ export class PrismaCommodityRepository
           },
         ],
       }),
-    };
+    });
 
     const [models, totalItems] = await this.prisma.$transaction([
       this.prisma.commodity.findMany({
@@ -70,10 +69,9 @@ export class PrismaCommodityRepository
 
   async findById(id: string): Promise<CommodityEntity | null> {
     const model = await this.prisma.commodity.findFirst({
-      where: {
+      where: this.buildActiveWhere({
         id,
-        deletedAt: null,
-      },
+      }),
     });
 
     return model ? this.toEntity(model) : null;
@@ -81,15 +79,14 @@ export class PrismaCommodityRepository
 
   async existsByName(name: string, excludeId?: string): Promise<boolean> {
     const total = await this.prisma.commodity.count({
-      where: {
+      where: this.buildActiveWhere({
         name,
-        deletedAt: null,
         ...(excludeId && {
           id: {
             not: excludeId,
           },
         }),
-      },
+      }),
     });
 
     return total > 0;
@@ -144,10 +141,7 @@ export class PrismaCommodityRepository
       where: {
         id,
       },
-      data: {
-        deletedAt: new Date(),
-        deletedBy,
-      },
+      data: this.buildSoftDeleteData(deletedBy),
     });
   }
 

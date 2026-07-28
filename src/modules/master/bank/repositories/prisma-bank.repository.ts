@@ -21,8 +21,7 @@ export class PrismaBankRepository
   }
 
   async findMany(filter: BankFilterContract): Promise<PageResult<BankEntity>> {
-    const where: Prisma.BankWhereInput = {
-      deletedAt: null,
+    const where: Prisma.BankWhereInput = this.buildActiveWhere({
       ...(filter.search && {
         OR: [
           {
@@ -45,7 +44,7 @@ export class PrismaBankRepository
           },
         ],
       }),
-    };
+    });
 
     const [models, totalItems] = await this.prisma.$transaction([
       this.prisma.bank.findMany({
@@ -71,10 +70,9 @@ export class PrismaBankRepository
 
   async findById(id: string): Promise<BankEntity | null> {
     const model = await this.prisma.bank.findFirst({
-      where: {
+      where: this.buildActiveWhere({
         id,
-        deletedAt: null,
-      },
+      }),
     });
 
     return model ? this.toEntity(model) : null;
@@ -85,15 +83,14 @@ export class PrismaBankRepository
     excludeId?: string,
   ): Promise<boolean> {
     const total = await this.prisma.bank.count({
-      where: {
+      where: this.buildActiveWhere({
         shortName,
-        deletedAt: null,
         ...(excludeId && {
           id: {
             not: excludeId,
           },
         }),
-      },
+      }),
     });
 
     return total > 0;
@@ -101,15 +98,14 @@ export class PrismaBankRepository
 
   async existsByName(name: string, excludeId?: string): Promise<boolean> {
     const total = await this.prisma.bank.count({
-      where: {
+      where: this.buildActiveWhere({
         name,
-        deletedAt: null,
         ...(excludeId && {
           id: {
             not: excludeId,
           },
         }),
-      },
+      }),
     });
 
     return total > 0;
@@ -154,10 +150,7 @@ export class PrismaBankRepository
       where: {
         id,
       },
-      data: {
-        deletedAt: new Date(),
-        deletedBy,
-      },
+      data: this.buildSoftDeleteData(deletedBy),
     });
   }
 

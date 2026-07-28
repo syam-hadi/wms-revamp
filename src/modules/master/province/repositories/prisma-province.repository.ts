@@ -23,8 +23,7 @@ export class PrismaProvinceRepository
   async findMany(
     filter: ProvinceFilterContract,
   ): Promise<PageResult<ProvinceEntity>> {
-    const where: Prisma.ProvinceWhereInput = {
-      deletedAt: null,
+    const where: Prisma.ProvinceWhereInput = this.buildActiveWhere({
       ...(filter.countryId && {
         countryId: filter.countryId,
       }),
@@ -44,7 +43,7 @@ export class PrismaProvinceRepository
           },
         ],
       }),
-    };
+    });
 
     const [models, totalItems] = await this.prisma.$transaction([
       this.prisma.province.findMany({
@@ -70,10 +69,9 @@ export class PrismaProvinceRepository
 
   async findById(id: string): Promise<ProvinceEntity | null> {
     const model = await this.prisma.province.findFirst({
-      where: {
+      where: this.buildActiveWhere({
         id,
-        deletedAt: null,
-      },
+      }),
     });
 
     return model ? this.toEntity(model) : null;
@@ -81,10 +79,9 @@ export class PrismaProvinceRepository
 
   async findByCountry(countryId: string): Promise<ProvinceEntity[]> {
     const models = await this.prisma.province.findMany({
-      where: {
+      where: this.buildActiveWhere({
         countryId,
-        deletedAt: null,
-      },
+      }),
     });
 
     return models.map((model) => this.toEntity(model));
@@ -96,16 +93,15 @@ export class PrismaProvinceRepository
     excludeId?: string,
   ): Promise<boolean> {
     const total = await this.prisma.province.count({
-      where: {
+      where: this.buildActiveWhere({
         code,
         countryId,
-        deletedAt: null,
         ...(excludeId && {
           id: {
             not: excludeId,
           },
         }),
-      },
+      }),
     });
 
     return total > 0;
@@ -148,10 +144,7 @@ export class PrismaProvinceRepository
       where: {
         id,
       },
-      data: {
-        deletedAt: new Date(),
-        deletedBy,
-      },
+      data: this.buildSoftDeleteData(deletedBy),
     });
   }
 

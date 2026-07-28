@@ -24,9 +24,7 @@ export class PrismaConfigRepository
   async findMany(
     filter: ConfigFilterContract,
   ): Promise<PageResult<ConfigEntity>> {
-    const where: Prisma.ConfigWhereInput = {
-      deletedAt: null,
-
+    const where: Prisma.ConfigWhereInput = this.buildActiveWhere({
       ...(filter.configGroup && {
         configGroup: filter.configGroup,
       }),
@@ -51,7 +49,7 @@ export class PrismaConfigRepository
           },
         ],
       }),
-    };
+    });
 
     const [models, totalItems] = await this.prisma.$transaction([
       this.prisma.config.findMany({
@@ -77,10 +75,9 @@ export class PrismaConfigRepository
 
   async findById(id: string): Promise<ConfigEntity | null> {
     const model = await this.prisma.config.findFirst({
-      where: {
+      where: this.buildActiveWhere({
         id,
-        deletedAt: null,
-      },
+      }),
     });
 
     return model ? this.toEntity(model) : null;
@@ -88,11 +85,10 @@ export class PrismaConfigRepository
 
   async findActiveByGroup(configGroup: string): Promise<ConfigEntity[]> {
     const models = await this.prisma.config.findMany({
-      where: {
+      where: this.buildActiveWhere({
         configGroup,
         status: Status.ACTIVE,
-        deletedAt: null,
-      },
+      }),
       orderBy: {
         name: Prisma.SortOrder.asc,
       },
@@ -107,16 +103,15 @@ export class PrismaConfigRepository
     excludeId?: string,
   ): Promise<boolean> {
     const total = await this.prisma.config.count({
-      where: {
+      where: this.buildActiveWhere({
         configGroup,
         code,
-        deletedAt: null,
         ...(excludeId && {
           id: {
             not: excludeId,
           },
         }),
-      },
+      }),
     });
 
     return total > 0;
@@ -161,10 +156,7 @@ export class PrismaConfigRepository
       where: {
         id,
       },
-      data: {
-        deletedAt: new Date(),
-        deletedBy,
-      },
+      data: this.buildSoftDeleteData(deletedBy),
     });
   }
 
