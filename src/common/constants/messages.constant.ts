@@ -113,4 +113,13 @@ export const Messages = {
     DUPLICATE_SHORT_NAME: 'Bank short name already exists.',
     DUPLICATE_NAME: 'Bank name already exists.',
   },
+
+  TAX: {
+    CREATED: 'Tax created successfully.',
+    UPDATED: 'Tax updated successfully.',
+    DELETED: 'Tax deleted successfully.',
+
+    NOT_FOUND: 'Tax not found.',
+    DUPLICATE_NAME: 'Tax name already exists.',
+  },
 } as const;

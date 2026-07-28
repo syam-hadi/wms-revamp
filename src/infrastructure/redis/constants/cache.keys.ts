@@ -45,4 +45,9 @@ export class CacheKeys {
     detail: (id: string) => `${prefix}:bank:${id}`,
     list: () => `${prefix}:bank:list`,
   };
+
+  static tax = {
+    detail: (id: string) => `${prefix}:tax:${id}`,
+    list: () => `${prefix}:tax:list`,
+  };
 }

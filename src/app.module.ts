@@ -5,6 +5,7 @@ import { CountryModule } from './modules/master/country/country.module';
 import { ProvinceModule } from './modules/master/province/province.module';
 import { CityModule } from './modules/master/city/city.module';
 import { BankModule } from './modules/master/bank/bank.module';
+import { TaxModule } from './modules/master/tax/tax.module';
 
 import {
   appConfig,
@@ -35,6 +36,7 @@ import { GlobalExceptionFilter } from './common/filters';
     ProvinceModule,
     CityModule,
     BankModule,
+    TaxModule,
   ],
   providers: [
     {

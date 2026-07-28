@@ -2,7 +2,11 @@ import { ApiProperty } from '@nestjs/swagger';
 import { OptionType, Status } from 'src/common/enums';
 
 export class ConfigContract {
-  @ApiProperty({ description: 'Unique identifier', format: 'uuid' })
+  @ApiProperty({
+    description: 'Unique identifier',
+    format: 'uuid',
+    example: '123e4567-e89b-12d3-a456-426614174000',
+  })
   id: string;
 
   @ApiProperty({
@@ -14,7 +18,7 @@ export class ConfigContract {
 
   @ApiProperty({
     description: 'Config Name',
-    maxLength: 150,
+    maxLength: 255,
     example: 'Max Login Retry',
   })
   name: string;
@@ -23,12 +27,13 @@ export class ConfigContract {
     type: String,
     nullable: true,
     description: 'Config Description',
+    example: 'Maximum login retry limit before locking account',
   })
   description: string | null;
 
   @ApiProperty({
     description: 'Config Group',
-    maxLength: 50,
+    maxLength: 100,
     example: 'SECURITY',
   })
   configGroup: string;
@@ -37,6 +42,7 @@ export class ConfigContract {
     enum: OptionType,
     enumName: 'OptionType',
     description: 'Type of Option',
+    example: OptionType.SELECT,
   })
   optionType: OptionType;
 
@@ -44,18 +50,33 @@ export class ConfigContract {
     enum: Status,
     enumName: 'Status',
     description: 'Status of Config',
+    example: Status.ACTIVE,
   })
   status: Status;
 
-  @ApiProperty()
+  @ApiProperty({ example: '2026-01-01T00:00:00.000Z' })
   createdAt: Date;
 
-  @ApiProperty({ type: String, nullable: true, format: 'uuid' })
+  @ApiProperty({
+    type: String,
+    nullable: true,
+    format: 'uuid',
+    example: '323e4567-e89b-12d3-a456-426614174002',
+  })
   createdBy: string | null;
 
-  @ApiProperty({ type: Date, nullable: true })
+  @ApiProperty({
+    type: Date,
+    nullable: true,
+    example: '2026-01-01T00:00:00.000Z',
+  })
   updatedAt: Date | null;
 
-  @ApiProperty({ type: String, nullable: true, format: 'uuid' })
+  @ApiProperty({
+    type: String,
+    nullable: true,
+    format: 'uuid',
+    example: '323e4567-e89b-12d3-a456-426614174002',
+  })
   updatedBy: string | null;
 }

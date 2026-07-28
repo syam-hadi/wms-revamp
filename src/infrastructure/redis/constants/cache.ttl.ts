@@ -15,4 +15,5 @@ export const CacheTTL = {
   COMPANY: 60 * 60,
   BRANCH: 60 * 60,
   BANK: 60 * 60,
+  TAX: 60 * 60,
 } as const;

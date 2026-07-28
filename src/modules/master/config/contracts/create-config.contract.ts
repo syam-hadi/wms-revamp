@@ -11,17 +11,20 @@ export class CreateConfigContract {
 
   @ApiProperty({
     description: 'The name of the config',
-    maxLength: 150,
+    maxLength: 255,
     example: 'Max Login Retry',
   })
   name!: string;
 
-  @ApiPropertyOptional({ description: 'The description of the config' })
+  @ApiPropertyOptional({
+    description: 'The description of the config',
+    example: 'Maximum login retry limit before locking account',
+  })
   description?: string;
 
   @ApiProperty({
     description: 'The group this config belongs to',
-    maxLength: 50,
+    maxLength: 100,
     example: 'SECURITY',
   })
   configGroup!: string;
@@ -30,6 +33,7 @@ export class CreateConfigContract {
     enum: OptionType,
     enumName: 'OptionType',
     description: 'The type of option',
+    example: OptionType.SELECT,
   })
   optionType!: OptionType;
 
@@ -37,6 +41,7 @@ export class CreateConfigContract {
     enum: Status,
     enumName: 'Status',
     description: 'The status of the config',
+    example: Status.ACTIVE,
   })
   status!: Status;
 }
