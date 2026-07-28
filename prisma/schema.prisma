@@ -95,3 +95,19 @@ model City {
   @@unique([provinceId, code])
   @@map("m_cities")
 }
+
+model Bank {
+  id        String @id @default(uuid()) @db.Uuid
+  code      String @unique @default(uuid()) @db.VarChar(20)
+  shortName String @unique @map("short_name") @db.VarChar(150)
+  name      String @unique @db.VarChar(150)
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  createdBy String?   @map("created_by") @db.Uuid
+  updatedAt DateTime? @updatedAt @map("updated_at")
+  updatedBy String?   @map("updated_by") @db.Uuid
+  deletedAt DateTime? @map("deleted_at")
+  deletedBy String?   @map("deleted_by") @db.Uuid
+
+  @@map("m_banks")
+}

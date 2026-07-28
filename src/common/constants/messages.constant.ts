@@ -103,4 +103,14 @@ export const Messages = {
     NOT_FOUND: 'City not found.',
     DUPLICATE_CODE: 'City code already exists.',
   },
+
+  BANK: {
+    CREATED: 'Bank created successfully.',
+    UPDATED: 'Bank updated successfully.',
+    DELETED: 'Bank deleted successfully.',
+
+    NOT_FOUND: 'Bank not found.',
+    DUPLICATE_SHORT_NAME: 'Bank short name already exists.',
+    DUPLICATE_NAME: 'Bank name already exists.',
+  },
 } as const;
