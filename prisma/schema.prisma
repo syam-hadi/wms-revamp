@@ -34,9 +34,7 @@ model Config {
   deletedBy String?   @map("deleted_by") @db.Uuid
 
   @@unique([configGroup, code])
-  @@index([configGroup])
-  @@index([status])
-  @@index([configGroup, status])
+  @@index([configGroup, status, deletedAt])
   @@map("m_configs")
 }
 
@@ -74,6 +72,7 @@ model Province {
   deletedBy String?   @map("deleted_by") @db.Uuid
 
   @@unique([countryId, code])
+  @@index([countryId, deletedAt])
   @@map("m_provinces")
 }
 
@@ -93,6 +92,7 @@ model City {
   deletedBy String?   @map("deleted_by") @db.Uuid
 
   @@unique([provinceId, code])
+  @@index([provinceId, deletedAt])
   @@map("m_cities")
 }
 
