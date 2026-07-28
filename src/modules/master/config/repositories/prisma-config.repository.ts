@@ -124,11 +124,13 @@ export class PrismaConfigRepository
 
   async create(
     contract: CreateConfigContract,
+    code: string,
     createdBy: string,
   ): Promise<ConfigEntity> {
     const model = await this.prisma.config.create({
       data: {
         ...contract,
+        code,
         createdBy,
       },
     });

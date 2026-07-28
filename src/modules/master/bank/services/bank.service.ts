@@ -12,6 +12,8 @@ import { BankFilterContract } from '../contracts/bank-filter.contract';
 import { BankEntity } from '../entities/bank.entity';
 import { CreateBankContract } from '../contracts/create-bank.contract';
 import { UpdateBankContract } from '../contracts/update-bank.contract';
+import { CodeGeneratorService } from 'src/common/code-generator/code-generator.service';
+import { CodeModule } from 'src/common/code-generator/code-generator.enum';
 
 @Injectable()
 export class BankService {
@@ -20,6 +22,7 @@ export class BankService {
     private readonly repository: BankRepository,
 
     private readonly cacheService: CacheService,
+    private readonly codeGenerator: CodeGeneratorService,
   ) {}
 
   async findMany(filter: BankFilterContract): Promise<PageResult<BankEntity>> {
@@ -45,7 +48,11 @@ export class BankService {
     const isDuplicateName = await this.repository.existsByName(contract.name);
     Assertion.duplicate(isDuplicateName, Messages.BANK.DUPLICATE_NAME);
 
-    const entity = await this.repository.create(contract, userId);
+    const code = await this.codeGenerator.generate({
+      module: CodeModule.BANK,
+    });
+
+    const entity = await this.repository.create(contract, code, userId);
 
     await this.invalidateCache();
 

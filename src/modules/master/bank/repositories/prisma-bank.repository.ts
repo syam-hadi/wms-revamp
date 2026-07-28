@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { v4 as uuidv4 } from 'uuid';
 
 import { PrismaRepository } from 'src/infrastructure/prisma/prisma.repository';
 import { PrismaService } from 'src/infrastructure/prisma/prisma.service';
@@ -118,10 +117,9 @@ export class PrismaBankRepository
 
   async create(
     contract: CreateBankContract,
+    code: string,
     createdBy: string,
   ): Promise<BankEntity> {
-    const code = uuidv4().replace(/-/g, '').substring(0, 20).toUpperCase();
-
     const model = await this.prisma.bank.create({
       data: {
         ...contract,

@@ -12,6 +12,8 @@ import { TaxFilterContract } from '../contracts/tax-filter.contract';
 import { TaxEntity } from '../entities/tax.entity';
 import { CreateTaxContract } from '../contracts/create-tax.contract';
 import { UpdateTaxContract } from '../contracts/update-tax.contract';
+import { CodeGeneratorService } from 'src/common/code-generator/code-generator.service';
+import { CodeModule } from 'src/common/code-generator/code-generator.enum';
 
 @Injectable()
 export class TaxService {
@@ -20,6 +22,7 @@ export class TaxService {
     private readonly repository: TaxRepository,
 
     private readonly cacheService: CacheService,
+    private readonly codeGenerator: CodeGeneratorService,
   ) {}
 
   async findMany(filter: TaxFilterContract): Promise<PageResult<TaxEntity>> {
@@ -37,7 +40,11 @@ export class TaxService {
     const isDuplicateName = await this.repository.existsByName(contract.name);
     Assertion.duplicate(isDuplicateName, Messages.TAX.DUPLICATE_NAME);
 
-    const entity = await this.repository.create(contract, userId);
+    const code = await this.codeGenerator.generate({
+      module: CodeModule.TAX,
+    });
+
+    const entity = await this.repository.create(contract, code, userId);
 
     await this.invalidateCache();
 

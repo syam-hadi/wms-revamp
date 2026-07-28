@@ -12,6 +12,8 @@ import { ConfigFilterContract } from '../contracts/config-filter.contract';
 import { ConfigEntity } from '../entities/config.entity';
 import { CreateConfigContract } from '../contracts/create-config.contract';
 import { UpdateConfigContract } from '../contracts/update-config.contract';
+import { CodeGeneratorService } from 'src/common/code-generator/code-generator.service';
+import { CodeModule } from 'src/common/code-generator/code-generator.enum';
 
 @Injectable()
 export class ConfigService {
@@ -20,6 +22,7 @@ export class ConfigService {
     private readonly repository: ConfigRepository,
 
     private readonly cacheService: CacheService,
+    private readonly codeGenerator: CodeGeneratorService,
   ) {}
 
   async findMany(
@@ -44,14 +47,18 @@ export class ConfigService {
     contract: CreateConfigContract,
     userId: string,
   ): Promise<ConfigEntity> {
+    const code = await this.codeGenerator.generate({
+      module: CodeModule.CONFIG,
+    });
+
     const isDuplicate = await this.repository.exists(
       contract.configGroup,
-      contract.code,
+      code,
     );
 
     Assertion.duplicate(isDuplicate, Messages.CONFIG.DUPLICATE_CODE);
 
-    const entity = await this.repository.create(contract, userId);
+    const entity = await this.repository.create(contract, code, userId);
 
     await this.invalidateCache(contract.configGroup);
 

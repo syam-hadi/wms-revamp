@@ -12,7 +12,7 @@ export class ConfigContract {
   @ApiProperty({
     description: 'Config Code',
     maxLength: 50,
-    example: 'CFG-001',
+    example: 'CFG000001',
   })
   code: string;
 

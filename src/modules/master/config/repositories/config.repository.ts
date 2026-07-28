@@ -21,6 +21,7 @@ export abstract class ConfigRepository {
 
   abstract create(
     contract: CreateConfigContract,
+    code: string,
     createdBy: string,
   ): Promise<ConfigEntity>;
 

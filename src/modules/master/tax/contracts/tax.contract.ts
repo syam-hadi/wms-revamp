@@ -11,7 +11,7 @@ export class TaxContract {
   @ApiProperty({
     description: 'Tax Code',
     maxLength: 20,
-    example: 'TAX-001',
+    example: 'TAX000001',
   })
   code: string;
 

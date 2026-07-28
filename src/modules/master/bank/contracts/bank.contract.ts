@@ -11,7 +11,7 @@ export class BankContract {
   @ApiProperty({
     description: 'Unique Bank Code',
     maxLength: 20,
-    example: 'BNK-001',
+    example: 'BNK000001',
   })
   code: string;
 

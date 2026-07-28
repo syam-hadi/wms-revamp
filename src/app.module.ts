@@ -19,6 +19,7 @@ import { RedisModule } from './infrastructure/redis/redis.module';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { ResponseInterceptor } from './common/interceptors';
 import { GlobalExceptionFilter } from './common/filters';
+import { CodeGeneratorModule } from './common/code-generator/code-generator.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { GlobalExceptionFilter } from './common/filters';
     }),
     PrismaModule,
     RedisModule,
+    CodeGeneratorModule,
     ConfigModule,
     CountryModule,
     ProvinceModule,

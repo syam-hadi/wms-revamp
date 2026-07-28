@@ -13,6 +13,7 @@ export abstract class TaxRepository {
 
   abstract create(
     contract: CreateTaxContract,
+    code: string,
     createdBy: string,
   ): Promise<TaxEntity>;
 

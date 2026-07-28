@@ -3,13 +3,6 @@ import { OptionType, Status } from 'src/common/enums';
 
 export class CreateConfigContract {
   @ApiProperty({
-    description: 'The unique code for the config',
-    maxLength: 50,
-    example: 'CFG-001',
-  })
-  code!: string;
-
-  @ApiProperty({
     description: 'The name of the config',
     maxLength: 255,
     example: 'Max Login Retry',

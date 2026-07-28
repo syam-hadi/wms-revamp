@@ -20,6 +20,7 @@ export abstract class BankRepository {
 
   abstract create(
     contract: CreateBankContract,
+    code: string,
     createdBy: string,
   ): Promise<BankEntity>;
 
