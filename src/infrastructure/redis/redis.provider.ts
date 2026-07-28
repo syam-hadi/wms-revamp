@@ -15,13 +15,9 @@ export const RedisProvider: Provider = {
       keyPrefix: configService.getOrThrow<string>('redis.keyPrefix'),
 
       lazyConnect: true,
-
       enableReadyCheck: true,
-
       maxRetriesPerRequest: 3,
-
       connectTimeout: 10000,
-
       keepAlive: 30000,
 
       retryStrategy(times: number): number | null {

@@ -87,7 +87,6 @@ export class CountryService {
   }
 
   private async invalidateCache(id?: string): Promise<void> {
-    await this.cacheService.invalidate(CacheKeys.country.list());
     if (id) {
       await this.cacheService.invalidate(CacheKeys.country.detail(id));
     }

@@ -120,7 +120,6 @@ export class CityService {
   }
 
   private async invalidateCache(id?: string): Promise<void> {
-    await this.cacheService.invalidate(CacheKeys.city.list());
     if (id) {
       await this.cacheService.invalidate(CacheKeys.city.detail(id));
     }

@@ -213,11 +213,6 @@ export class CacheService {
       clearInterval(this.probeTimer);
       this.probeTimer = null;
     }
-
-    // Recovery flush to prevent stale cache data
-    this.redisService.flush().catch((err) => {
-      this.logger.error('Failed to flush Redis on recovery', err);
-    });
   }
 
   private toError(error: unknown): Error {

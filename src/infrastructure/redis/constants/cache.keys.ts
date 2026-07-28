@@ -5,6 +5,7 @@ export class CacheKeys {
   static config = {
     group: (group: string) => `${prefix}:config:${group.toLowerCase()}`,
     pattern: (group: string) => `${prefix}:config:${group.toLowerCase()}*`,
+    detail: (id: string) => `${prefix}:config:id:${id}`,
   };
 
   static company = {

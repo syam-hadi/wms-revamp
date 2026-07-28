@@ -67,7 +67,7 @@ export class ConfigService {
 
     const entity = await this.repository.update(id, contract, userId);
 
-    await this.invalidateCache(current.configGroup);
+    await this.invalidateCache(current.configGroup, id);
 
     return entity;
   }
@@ -77,18 +77,28 @@ export class ConfigService {
 
     await this.repository.softDelete(current.id, userId);
 
-    await this.invalidateCache(current.configGroup);
+    await this.invalidateCache(current.configGroup, id);
   }
 
   private async getConfigOrThrow(id: string): Promise<ConfigEntity> {
-    const entity = await this.repository.findById(id);
+    const entity = await this.cacheService.remember(
+      CacheKeys.config.detail(id),
+      CacheTTL.CONFIG,
+      () => this.repository.findById(id),
+    );
 
     Assertion.notFound(entity, Messages.CONFIG.NOT_FOUND);
 
     return entity;
   }
 
-  private async invalidateCache(configGroup: string): Promise<void> {
+  private async invalidateCache(
+    configGroup: string,
+    id?: string,
+  ): Promise<void> {
     await this.cacheService.invalidate(CacheKeys.config.group(configGroup));
+    if (id) {
+      await this.cacheService.invalidate(CacheKeys.config.detail(id));
+    }
   }
 }
