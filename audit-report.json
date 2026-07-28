@@ -1,0 +1,401 @@
+{
+  "config": {
+    "controller": {
+      "apiTags": "Master - Config",
+      "hasGenericResponse": true,
+      "operationIds": [
+        "getManyConfigs",
+        "getConfigById",
+        "getActiveConfigsByGroup",
+        "createConfig",
+        "updateConfig",
+        "deleteConfig"
+      ],
+      "routePattern": "configs"
+    },
+    "service": {
+      "hasPrisma": false,
+      "usesCache": true
+    },
+    "repository": {
+      "extendsBase": false,
+      "implementsInterface": true,
+      "hasSoftDelete": true,
+      "hasApplyFilter": false,
+      "hasApplySort": false
+    },
+    "validation": {},
+    "contract": {
+      "examples": [
+        "'123e4567-e89b-12d3-a456-426614174000'",
+        "'CFG000001'",
+        "'Max Login Retry'",
+        "'Maximum login retry limit before locking account'",
+        "'SECURITY'",
+        "OptionType.SELECT",
+        "Status.ACTIVE",
+        "'2026-01-01T00:00:00.000Z'",
+        "'323e4567-e89b-12d3-a456-426614174002'",
+        "'2026-01-01T00:00:00.000Z'",
+        "'323e4567-e89b-12d3-a456-426614174002'"
+      ]
+    },
+    "swagger": {},
+    "cache": {
+      "keys": [],
+      "invalidates": [],
+      "remember": true
+    },
+    "entity": {
+      "hasApiProperty": false,
+      "hasSwagger": false
+    }
+  },
+  "country": {
+    "controller": {
+      "apiTags": "Master - Country",
+      "hasGenericResponse": true,
+      "operationIds": [
+        "getManyCountries",
+        "getCountryById",
+        "createCountry",
+        "updateCountry",
+        "deleteCountry"
+      ],
+      "routePattern": "countries"
+    },
+    "service": {
+      "hasPrisma": false,
+      "usesCache": true
+    },
+    "repository": {
+      "extendsBase": false,
+      "implementsInterface": true,
+      "hasSoftDelete": true,
+      "hasApplyFilter": false,
+      "hasApplySort": false
+    },
+    "validation": {},
+    "contract": {
+      "examples": [
+        "'123e4567-e89b-12d3-a456-426614174000'",
+        "'ID'",
+        "'Indonesia'",
+        "'2026-01-01T00:00:00.000Z'",
+        "'323e4567-e89b-12d3-a456-426614174002'",
+        "'2026-01-01T00:00:00.000Z'",
+        "'323e4567-e89b-12d3-a456-426614174002'"
+      ]
+    },
+    "swagger": {},
+    "cache": {
+      "keys": [],
+      "invalidates": [],
+      "remember": true
+    },
+    "entity": {
+      "hasApiProperty": false,
+      "hasSwagger": false
+    }
+  },
+  "province": {
+    "controller": {
+      "apiTags": "Master - Province",
+      "hasGenericResponse": true,
+      "operationIds": [
+        "getManyProvinces",
+        "getProvinceById",
+        "createProvince",
+        "updateProvince",
+        "deleteProvince"
+      ],
+      "routePattern": "provinces"
+    },
+    "service": {
+      "hasPrisma": false,
+      "usesCache": true
+    },
+    "repository": {
+      "extendsBase": false,
+      "implementsInterface": true,
+      "hasSoftDelete": true,
+      "hasApplyFilter": false,
+      "hasApplySort": false
+    },
+    "validation": {},
+    "contract": {
+      "examples": [
+        "'123e4567-e89b-12d3-a456-426614174000'",
+        "'223e4567-e89b-12d3-a456-426614174001'",
+        "'JKT'",
+        "'Jakarta'",
+        "'2026-01-01T00:00:00.000Z'",
+        "'323e4567-e89b-12d3-a456-426614174002'",
+        "'2026-01-01T00:00:00.000Z'",
+        "'323e4567-e89b-12d3-a456-426614174002'"
+      ]
+    },
+    "swagger": {},
+    "cache": {
+      "keys": [],
+      "invalidates": [],
+      "remember": true
+    },
+    "entity": {
+      "hasApiProperty": false,
+      "hasSwagger": false
+    }
+  },
+  "city": {
+    "controller": {
+      "apiTags": "Master - City",
+      "hasGenericResponse": true,
+      "operationIds": [
+        "getManyCities",
+        "getCityById",
+        "createCity",
+        "updateCity",
+        "deleteCity"
+      ],
+      "routePattern": "cities"
+    },
+    "service": {
+      "hasPrisma": false,
+      "usesCache": true
+    },
+    "repository": {
+      "extendsBase": false,
+      "implementsInterface": true,
+      "hasSoftDelete": true,
+      "hasApplyFilter": false,
+      "hasApplySort": false
+    },
+    "validation": {},
+    "contract": {
+      "examples": [
+        "'123e4567-e89b-12d3-a456-426614174000'",
+        "'223e4567-e89b-12d3-a456-426614174001'",
+        "'JKT-SEL'",
+        "'Jakarta Selatan'",
+        "'2026-01-01T00:00:00.000Z'",
+        "'323e4567-e89b-12d3-a456-426614174002'",
+        "'2026-01-01T00:00:00.000Z'",
+        "'323e4567-e89b-12d3-a456-426614174002'"
+      ]
+    },
+    "swagger": {},
+    "cache": {
+      "keys": [],
+      "invalidates": [],
+      "remember": true
+    },
+    "entity": {
+      "hasApiProperty": false,
+      "hasSwagger": false
+    }
+  },
+  "bank": {
+    "controller": {
+      "apiTags": "Master - Bank",
+      "hasGenericResponse": true,
+      "operationIds": [
+        "getManyBanks",
+        "getBankById",
+        "createBank",
+        "updateBank",
+        "deleteBank"
+      ],
+      "routePattern": "banks"
+    },
+    "service": {
+      "hasPrisma": false,
+      "usesCache": true
+    },
+    "repository": {
+      "extendsBase": false,
+      "implementsInterface": true,
+      "hasSoftDelete": true,
+      "hasApplyFilter": false,
+      "hasApplySort": false
+    },
+    "validation": {},
+    "contract": {
+      "examples": [
+        "'123e4567-e89b-12d3-a456-426614174000'",
+        "'BNK000001'",
+        "'BCA'",
+        "'Bank Central Asia'",
+        "'2026-01-01T00:00:00.000Z'",
+        "'323e4567-e89b-12d3-a456-426614174002'",
+        "'2026-01-01T00:00:00.000Z'",
+        "'323e4567-e89b-12d3-a456-426614174002'"
+      ]
+    },
+    "swagger": {},
+    "cache": {
+      "keys": [],
+      "invalidates": [],
+      "remember": true
+    },
+    "entity": {
+      "hasApiProperty": false,
+      "hasSwagger": false
+    }
+  },
+  "tax": {
+    "controller": {
+      "apiTags": "Master - Tax",
+      "hasGenericResponse": true,
+      "operationIds": [
+        "getManyTaxes",
+        "getTaxById",
+        "createTax",
+        "updateTax",
+        "deleteTax"
+      ],
+      "routePattern": "taxes"
+    },
+    "service": {
+      "hasPrisma": false,
+      "usesCache": true
+    },
+    "repository": {
+      "extendsBase": false,
+      "implementsInterface": true,
+      "hasSoftDelete": true,
+      "hasApplyFilter": false,
+      "hasApplySort": false
+    },
+    "validation": {},
+    "contract": {
+      "examples": [
+        "'123e4567-e89b-12d3-a456-426614174000'",
+        "'TAX000001'",
+        "'PPN 11%'",
+        "'Pajak Pertambahan Nilai 11%'",
+        "11.0",
+        "true",
+        "'411211'",
+        "'REF-TAX-001'",
+        "'2026-01-01T00:00:00.000Z'",
+        "'323e4567-e89b-12d3-a456-426614174002'",
+        "'2026-01-01T00:00:00.000Z'",
+        "'323e4567-e89b-12d3-a456-426614174002'"
+      ]
+    },
+    "swagger": {},
+    "cache": {
+      "keys": [],
+      "invalidates": [],
+      "remember": true
+    },
+    "entity": {
+      "hasApiProperty": false,
+      "hasSwagger": false
+    }
+  },
+  "commodity": {
+    "controller": {
+      "apiTags": "Master - Commodity",
+      "hasGenericResponse": true,
+      "operationIds": [
+        "getManyCommodities",
+        "getCommodityById",
+        "createCommodity",
+        "updateCommodity",
+        "deleteCommodity"
+      ],
+      "routePattern": "commodities"
+    },
+    "service": {
+      "hasPrisma": false,
+      "usesCache": true
+    },
+    "repository": {
+      "extendsBase": false,
+      "implementsInterface": true,
+      "hasSoftDelete": true,
+      "hasApplyFilter": false,
+      "hasApplySort": false
+    },
+    "validation": {},
+    "contract": {
+      "examples": [
+        "'d9b2d63d-a233-4123-8478-6543169e5781'",
+        "'CMD-0001'",
+        "'Organic Peroxide Type F",
+        "'29239000'",
+        "'Chemicals'",
+        "true",
+        "'Class 5.2'",
+        "true",
+        "-10.0",
+        "-5.0",
+        "'Stow away from living quarters. Continuous temperature monitoring mandatory.'",
+        "'2026-01-01T00:00:00.000Z'",
+        "'323e4567-e89b-12d3-a456-426614174002'",
+        "'2026-01-01T00:00:00.000Z'",
+        "'323e4567-e89b-12d3-a456-426614174002'"
+      ]
+    },
+    "swagger": {},
+    "cache": {
+      "keys": [],
+      "invalidates": [],
+      "remember": true
+    },
+    "entity": {
+      "hasApiProperty": false,
+      "hasSwagger": false
+    }
+  },
+  "rate": {
+    "controller": {
+      "apiTags": "Master - Rate",
+      "hasGenericResponse": true,
+      "operationIds": [
+        "getManyRates",
+        "getRateById",
+        "createRate",
+        "updateRate",
+        "deleteRate"
+      ],
+      "routePattern": "rates"
+    },
+    "service": {
+      "hasPrisma": false,
+      "usesCache": true
+    },
+    "repository": {
+      "extendsBase": false,
+      "implementsInterface": true,
+      "hasSoftDelete": true,
+      "hasApplyFilter": false,
+      "hasApplySort": false
+    },
+    "validation": {},
+    "contract": {
+      "examples": [
+        "'d9b2d63d-a233-4123-8478-6543169e5781'",
+        "'550e8400-e29b-41d4-a716-446655440000'",
+        "'USD exchange rate effective July 2025'",
+        "16525.75",
+        "'2025-07-01T00:00:00.000Z'",
+        "'2025-01-01T00:00:00.000Z'",
+        "'323e4567-e89b-12d3-a456-426614174002'",
+        "'2025-01-01T00:00:00.000Z'",
+        "'323e4567-e89b-12d3-a456-426614174002'"
+      ]
+    },
+    "swagger": {},
+    "cache": {
+      "keys": [],
+      "invalidates": [],
+      "remember": true
+    },
+    "entity": {
+      "hasApiProperty": false,
+      "hasSwagger": false
+    }
+  }
+}

@@ -29,7 +29,7 @@ import {
   RateFilterValidation,
   CreateRateValidation,
   UpdateRateValidation,
-} from '../validations/rate.validation';
+} from '../validations';
 
 @ApiTags('Master - Rate')
 @Controller('rates')
