@@ -55,4 +55,9 @@ export class CacheKeys {
     detail: (id: string) => `${prefix}:commodity:${id}`,
     list: () => `${prefix}:commodity:list`,
   };
+
+  static rate = {
+    detail: (id: string) => `${prefix}:rate:${id}`,
+    list: () => `${prefix}:rate:list`,
+  };
 }

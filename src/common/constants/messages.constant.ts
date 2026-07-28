@@ -131,4 +131,12 @@ export const Messages = {
     NOT_FOUND: 'Commodity not found.',
     DUPLICATE_NAME: 'Commodity name already exists.',
   },
+
+  RATE: {
+    CREATED: 'Rate created successfully.',
+    UPDATED: 'Rate updated successfully.',
+    DELETED: 'Rate deleted successfully.',
+
+    NOT_FOUND: 'Rate not found.',
+  },
 } as const;

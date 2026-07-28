@@ -7,6 +7,7 @@ import { CityModule } from './modules/master/city/city.module';
 import { BankModule } from './modules/master/bank/bank.module';
 import { TaxModule } from './modules/master/tax/tax.module';
 import { CommodityModule } from './modules/master/commodity/commodity.module';
+import { RateModule } from './modules/master/rate/rate.module';
 
 import {
   appConfig,
@@ -41,6 +42,7 @@ import { CodeGeneratorModule } from './common/code-generator/code-generator.modu
     BankModule,
     TaxModule,
     CommodityModule,
+    RateModule,
   ],
   providers: [
     {
