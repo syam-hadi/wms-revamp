@@ -1,11 +1,34 @@
+import { ApiProperty } from '@nestjs/swagger';
+
 export class ApiError {
+  @ApiProperty({ default: false })
+  public readonly success: boolean;
+
+  @ApiProperty()
+  public readonly message: string;
+
+  @ApiProperty({ required: false })
+  public readonly errors: unknown;
+
+  @ApiProperty()
+  public readonly timestamp: Date;
+
+  @ApiProperty()
+  public readonly path: string;
+
   constructor(
-    public readonly success: boolean,
-    public readonly message: string,
-    public readonly errors: unknown,
-    public readonly timestamp: Date,
-    public readonly path: string,
-  ) {}
+    success: boolean,
+    message: string,
+    errors: unknown,
+    timestamp: Date,
+    path: string,
+  ) {
+    this.success = success;
+    this.message = message;
+    this.errors = errors;
+    this.timestamp = timestamp;
+    this.path = path;
+  }
 
   static of(message: string, path: string, errors: unknown = null): ApiError {
     return new ApiError(false, message, errors, new Date(), path);

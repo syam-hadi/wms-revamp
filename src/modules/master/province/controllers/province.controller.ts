@@ -1,11 +1,4 @@
 import {
-  ApiTags,
-  ApiOperation,
-  ApiBody,
-  ApiOkResponse,
-  ApiCreatedResponse,
-} from '@nestjs/swagger';
-import {
   Body,
   Controller,
   Delete,
@@ -17,36 +10,38 @@ import {
   Post,
   Query,
 } from '@nestjs/common';
+import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 
-import {
-  CurrentUser,
-  ResponseMessage,
-  ApiPaginatedResponse,
-} from 'src/common/decorators';
 import { Messages } from 'src/common/constants';
-import { ProvinceService } from '../services/province.service';
-import { ProvinceEntity } from '../entities/province.entity';
+import { CurrentUser, ResponseMessage } from 'src/common/decorators';
 import { PageResult } from 'src/common/models';
+import { ProvinceEntity } from '../entities/province.entity';
+import { ProvinceService } from '../services/province.service';
 
+import { CurrentUserModel } from 'src/common/models/current-user.model';
+import { ApiGenericResponse } from 'src/common/swagger/decorators/api-generic-response.decorator';
+import { JoiValidationPipe } from 'src/common/validation/pipes/joi-validation.pipe';
+import { CreateProvinceContract } from '../contracts/create-province.contract';
+import { ProvinceFilterContract } from '../contracts/province-filter.contract';
+import { ProvinceContract } from '../contracts/province.contract';
+import { UpdateProvinceContract } from '../contracts/update-province.contract';
 import {
-  ProvinceFilterValidation,
   CreateProvinceValidation,
+  ProvinceFilterValidation,
   UpdateProvinceValidation,
 } from '../validations';
-import { JoiValidationPipe } from 'src/common/validation/pipes/joi-validation.pipe';
-import { ProvinceFilterContract } from '../contracts/province-filter.contract';
-import { CreateProvinceContract } from '../contracts/create-province.contract';
-import { CurrentUserModel } from 'src/common/models/current-user.model';
-import { UpdateProvinceContract } from '../contracts/update-province.contract';
 
-@ApiTags('Provinces')
+@ApiTags('Master - Province')
 @Controller('provinces')
 export class ProvinceController {
   constructor(private readonly provinceService: ProvinceService) {}
 
   @Get()
-  @ApiOperation({ summary: 'Get many provinces' })
-  @ApiPaginatedResponse(ProvinceEntity)
+  @ApiOperation({
+    summary: 'Get many provinces',
+    operationId: 'getManyProvinces',
+  })
+  @ApiGenericResponse(ProvinceContract, { isPaginated: true })
   findMany(
     @Query(new JoiValidationPipe(ProvinceFilterValidation))
     filter: ProvinceFilterContract,
@@ -55,8 +50,11 @@ export class ProvinceController {
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'Get province by id' })
-  @ApiOkResponse({ type: ProvinceEntity })
+  @ApiOperation({
+    summary: 'Get province by id',
+    operationId: 'getProvinceById',
+  })
+  @ApiGenericResponse(ProvinceContract)
   findById(
     @Param('id')
     id: string,
@@ -67,8 +65,11 @@ export class ProvinceController {
   @Post()
   @HttpCode(HttpStatus.CREATED)
   @ResponseMessage(Messages.PROVINCE.CREATED)
-  @ApiOperation({ summary: 'Create a new province' })
-  @ApiCreatedResponse({ type: ProvinceEntity })
+  @ApiOperation({
+    summary: 'Create a new province',
+    operationId: 'createProvince',
+  })
+  @ApiGenericResponse(ProvinceContract, { status: 201 })
   @ApiBody({ type: CreateProvinceContract })
   create(
     @Body(new JoiValidationPipe(CreateProvinceValidation))
@@ -82,8 +83,8 @@ export class ProvinceController {
 
   @Patch(':id')
   @ResponseMessage(Messages.PROVINCE.UPDATED)
-  @ApiOperation({ summary: 'Update a province' })
-  @ApiOkResponse({ type: ProvinceEntity })
+  @ApiOperation({ summary: 'Update a province', operationId: 'updateProvince' })
+  @ApiGenericResponse(ProvinceContract)
   @ApiBody({ type: UpdateProvinceContract })
   update(
     @Param('id')
@@ -101,8 +102,11 @@ export class ProvinceController {
   @Delete(':id')
   @HttpCode(HttpStatus.OK)
   @ResponseMessage(Messages.PROVINCE.DELETED)
-  @ApiOperation({ summary: 'Delete a province' })
-  @ApiOkResponse()
+  @ApiOperation({
+    summary: 'Delete a province',
+    operationId: 'deleteProvince',
+  })
+  @ApiGenericResponse()
   remove(
     @Param('id')
     id: string,

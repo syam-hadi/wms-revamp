@@ -2,12 +2,21 @@ import { ApiPropertyOptional } from '@nestjs/swagger';
 import { SortOrder, Status } from '../enums';
 
 export class BaseQueryContract {
-  @ApiPropertyOptional({ description: 'Page number', default: 1 })
+  @ApiPropertyOptional({
+    description: 'Page number',
+    default: 1,
+    type: 'integer',
+    format: 'int32',
+    minimum: 1,
+  })
   page: number = 1;
 
   @ApiPropertyOptional({
     description: 'Items per page',
     default: 20,
+    type: 'integer',
+    format: 'int32',
+    minimum: 1,
   })
   limit: number = 20;
 

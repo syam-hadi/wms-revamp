@@ -1,11 +1,4 @@
 import {
-  ApiTags,
-  ApiOperation,
-  ApiBody,
-  ApiOkResponse,
-  ApiCreatedResponse,
-} from '@nestjs/swagger';
-import {
   Body,
   Controller,
   Delete,
@@ -17,35 +10,35 @@ import {
   Post,
   Query,
 } from '@nestjs/common';
+import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 
-import {
-  CurrentUser,
-  ResponseMessage,
-  ApiPaginatedResponse,
-} from 'src/common/decorators';
 import { Messages } from 'src/common/constants';
-import { ConfigService } from '../services/config.service';
-import { ConfigEntity } from '../entities/config.entity';
+import { CurrentUser, ResponseMessage } from 'src/common/decorators';
 import { PageResult } from 'src/common/models';
+import { ConfigEntity } from '../entities/config.entity';
+import { ConfigService } from '../services/config.service';
 
+import { CurrentUserModel } from 'src/common/models/current-user.model';
+import { ApiGenericResponse } from 'src/common/swagger/decorators/api-generic-response.decorator';
+import { JoiValidationPipe } from 'src/common/validation/pipes/joi-validation.pipe';
+import { ConfigFilterContract } from '../contracts/config-filter.contract';
+import { ConfigContract } from '../contracts/config.contract';
+import { CreateConfigContract } from '../contracts/create-config.contract';
+import { UpdateConfigContract } from '../contracts/update-config.contract';
 import {
   ConfigFilterValidation,
   CreateConfigValidation,
   UpdateConfigValidation,
 } from '../validations';
-import { JoiValidationPipe } from 'src/common/validation/pipes/joi-validation.pipe';
-import { ConfigFilterContract } from '../contracts/config-filter.contract';
-import { CreateConfigContract } from '../contracts/create-config.contract';
-import { CurrentUserModel } from 'src/common/models/current-user.model';
-import { UpdateConfigContract } from '../contracts/update-config.contract';
 
-@ApiTags('Configs')
+@ApiTags('Master - Config')
 @Controller('configs')
 export class ConfigController {
   constructor(private readonly configService: ConfigService) {}
+
   @Get()
-  @ApiOperation({ summary: 'Get many configs' })
-  @ApiPaginatedResponse(ConfigEntity)
+  @ApiOperation({ summary: 'Get many configs', operationId: 'getManyConfigs' })
+  @ApiGenericResponse(ConfigContract, { isPaginated: true })
   findMany(
     @Query(new JoiValidationPipe(ConfigFilterValidation))
     filter: ConfigFilterContract,
@@ -54,8 +47,8 @@ export class ConfigController {
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'Get config by id' })
-  @ApiOkResponse({ type: ConfigEntity })
+  @ApiOperation({ summary: 'Get config by id', operationId: 'getConfigById' })
+  @ApiGenericResponse(ConfigContract)
   findById(
     @Param('id')
     id: string,
@@ -64,8 +57,11 @@ export class ConfigController {
   }
 
   @Get('group/:configGroup')
-  @ApiOperation({ summary: 'Get active configs by group' })
-  @ApiOkResponse({ type: [ConfigEntity] })
+  @ApiOperation({
+    summary: 'Get active configs by group',
+    operationId: 'getActiveConfigsByGroup',
+  })
+  @ApiGenericResponse(ConfigContract, { isArray: true })
   findActiveByGroup(
     @Param('configGroup')
     configGroup: string,
@@ -76,8 +72,8 @@ export class ConfigController {
   @Post()
   @HttpCode(HttpStatus.CREATED)
   @ResponseMessage(Messages.CONFIG.CREATED)
-  @ApiOperation({ summary: 'Create a new config' })
-  @ApiCreatedResponse({ type: ConfigEntity })
+  @ApiOperation({ summary: 'Create a new config', operationId: 'createConfig' })
+  @ApiGenericResponse(ConfigContract, { status: 201 })
   @ApiBody({ type: CreateConfigContract })
   create(
     @Body(new JoiValidationPipe(CreateConfigValidation))
@@ -91,8 +87,8 @@ export class ConfigController {
 
   @Patch(':id')
   @ResponseMessage(Messages.CONFIG.UPDATED)
-  @ApiOperation({ summary: 'Update a config' })
-  @ApiOkResponse({ type: ConfigEntity })
+  @ApiOperation({ summary: 'Update a config', operationId: 'updateConfig' })
+  @ApiGenericResponse(ConfigContract)
   @ApiBody({ type: UpdateConfigContract })
   update(
     @Param('id')
@@ -110,8 +106,8 @@ export class ConfigController {
   @Delete(':id')
   @HttpCode(HttpStatus.OK)
   @ResponseMessage(Messages.CONFIG.DELETED)
-  @ApiOperation({ summary: 'Delete a config' })
-  @ApiOkResponse()
+  @ApiOperation({ summary: 'Delete a config', operationId: 'deleteConfig' })
+  @ApiGenericResponse()
   remove(
     @Param('id')
     id: string,

@@ -3,16 +3,16 @@ import { ApiProperty } from '@nestjs/swagger';
 export class PageResult<T> {
   public readonly items: T[];
 
-  @ApiProperty()
+  @ApiProperty({ type: 'integer', format: 'int32' })
   public readonly page: number;
 
-  @ApiProperty()
+  @ApiProperty({ type: 'integer', format: 'int32' })
   public readonly limit: number;
 
-  @ApiProperty()
+  @ApiProperty({ type: 'integer', format: 'int32' })
   public readonly totalItems: number;
 
-  @ApiProperty()
+  @ApiProperty({ type: 'integer', format: 'int32' })
   public readonly totalPages: number;
 
   @ApiProperty()
@@ -21,7 +21,7 @@ export class PageResult<T> {
   @ApiProperty()
   public readonly hasNextPage: boolean;
 
-  private constructor(
+  constructor(
     items: T[],
     page: number,
     limit: number,
