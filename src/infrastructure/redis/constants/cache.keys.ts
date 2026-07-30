@@ -1,87 +1,84 @@
-const env = process.env.NODE_ENV || 'development';
-const prefix = `${env}:master`;
-
 export class CacheKeys {
   static config = {
-    group: (group: string) => `${prefix}:config:${group.toLowerCase()}`,
-    pattern: (group: string) => `${prefix}:config:${group.toLowerCase()}*`,
-    detail: (id: string) => `${prefix}:config:id:${id}`,
+    group: (group: string) => `config:${group.toLowerCase()}`,
+    pattern: (group: string) => `config:${group.toLowerCase()}*`,
+    detail: (id: string) => `config:id:${id}`,
   };
 
   static company = {
-    detail: (id: string) => `${prefix}:company:${id}`,
-    list: () => `${prefix}:company:list`,
+    detail: (id: string) => `company:${id}`,
+    list: () => `company:list`,
   };
 
   static branch = {
-    detail: (id: string) => `${prefix}:branch:${id}`,
-    list: (companyId: string) => `${prefix}:company:${companyId}:branches`,
+    detail: (id: string) => `branch:${id}`,
+    list: (companyId: string) => `company:${companyId}:branches`,
   };
 
   static department = {
-    list: (companyId: string) => `${prefix}:company:${companyId}:departments`,
+    list: (companyId: string) => `company:${companyId}:departments`,
   };
 
   static employee = {
-    detail: (id: string) => `${prefix}:employee:${id}`,
+    detail: (id: string) => `employee:${id}`,
   };
 
   static country = {
-    detail: (id: string) => `${prefix}:country:${id}`,
-    list: () => `${prefix}:country:list`,
+    detail: (id: string) => `country:${id}`,
+    list: () => `country:list`,
   };
 
   static province = {
-    detail: (id: string) => `${prefix}:province:${id}`,
-    list: () => `${prefix}:province:list`,
+    detail: (id: string) => `province:${id}`,
+    list: () => `province:list`,
   };
 
   static city = {
-    detail: (id: string) => `${prefix}:city:${id}`,
-    list: () => `${prefix}:city:list`,
+    detail: (id: string) => `city:${id}`,
+    list: () => `city:list`,
   };
 
   static bank = {
-    detail: (id: string) => `${prefix}:bank:${id}`,
-    list: () => `${prefix}:bank:list`,
+    detail: (id: string) => `bank:${id}`,
+    list: () => `bank:list`,
   };
 
   static tax = {
-    detail: (id: string) => `${prefix}:tax:${id}`,
-    list: () => `${prefix}:tax:list`,
+    detail: (id: string) => `tax:${id}`,
+    list: () => `tax:list`,
   };
 
   static commodity = {
-    detail: (id: string) => `${prefix}:commodity:${id}`,
-    list: () => `${prefix}:commodity:list`,
+    detail: (id: string) => `commodity:${id}`,
+    list: () => `commodity:list`,
   };
 
   static rate = {
-    detail: (id: string) => `${prefix}:rate:${id}`,
-    list: () => `${prefix}:rate:list`,
+    detail: (id: string) => `rate:${id}`,
+    list: () => `rate:list`,
   };
 
   static currency = {
-    detail: (id: string) => `${prefix}:currency:${id}`,
-    list: () => `${prefix}:currency:list`,
+    detail: (id: string) => `currency:${id}`,
+    list: () => `currency:list`,
   };
   static depot = {
-    detail: (id: string) => `${prefix}:depot:${id}`,
-    list: () => `${prefix}:depot:list`,
+    detail: (id: string) => `depot:${id}`,
+    list: () => `depot:list`,
   };
 
   static port = {
-    detail: (id: string) => `${prefix}:port:${id}`,
-    list: () => `${prefix}:port:list`,
+    detail: (id: string) => `port:${id}`,
+    list: () => `port:list`,
   };
 
   static unitOfMeasurement = {
-    detail: (id: string) => `${prefix}:uom:${id}`,
-    list: () => `${prefix}:uom:list`,
+    detail: (id: string) => `uom:${id}`,
+    list: () => `uom:list`,
   };
 
   static vessel = {
-    detail: (id: string) => `${prefix}:vessel:${id}`,
-    list: () => `${prefix}:vessel:list`,
+    detail: (id: string) => `vessel:${id}`,
+    list: () => `vessel:list`,
   };
 }

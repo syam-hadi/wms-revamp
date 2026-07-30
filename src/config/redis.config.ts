@@ -5,5 +5,5 @@ export default registerAs('redis', () => ({
   port: Number(process.env.REDIS_PORT),
   password: process.env.REDIS_PASSWORD,
   db: Number(process.env.REDIS_DB),
-  keyPrefix: process.env.REDIS_KEY_PREFIX,
+  keyPrefix: `${process.env.REDIS_KEY_PREFIX}${process.env.NODE_ENV || 'development'}:master:`,
 }));

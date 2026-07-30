@@ -27,9 +27,17 @@
 
 ## Project setup
 
+1. Install dependencies:
 ```bash
 $ yarn install
 ```
+
+2. Configure environment variables:
+Copy the `.env.example` file to create your local `.env` configuration file.
+```bash
+$ cp .env.example .env
+```
+Ensure that you review and update `.env` variables such as database connection string, JWT secrets, Redis, and RabbitMQ endpoints according to your local setup before running the application.
 
 ## Compile and run the project
 

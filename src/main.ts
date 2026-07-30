@@ -1,5 +1,6 @@
 import { VersioningType } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import { ConfigService } from '@nestjs/config';
 
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
@@ -26,7 +27,9 @@ async function bootstrap() {
   app.enableShutdownHooks();
   setupSwagger(app);
 
-  await app.listen(process.env.PORT ?? 3000);
+  const configService = app.get(ConfigService);
+  const port = configService.get<number>('app.port') ?? 4000;
+  await app.listen(port);
 }
 
 void bootstrap();
