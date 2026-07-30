@@ -1,4 +1,4 @@
-import * as Joi from 'joi';
+import Joi from 'joi';
 
 export const UpdateDepotValidation = Joi.object({
   name: Joi.string().required().trim().max(150),

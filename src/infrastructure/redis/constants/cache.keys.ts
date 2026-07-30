@@ -79,4 +79,9 @@ export class CacheKeys {
     detail: (id: string) => `${prefix}:uom:${id}`,
     list: () => `${prefix}:uom:list`,
   };
+
+  static vessel = {
+    detail: (id: string) => `${prefix}:vessel:${id}`,
+    list: () => `${prefix}:vessel:list`,
+  };
 }

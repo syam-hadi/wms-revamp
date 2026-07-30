@@ -4,6 +4,7 @@ import { Prisma } from '@prisma/client';
 import { PrismaRepository } from 'src/infrastructure/prisma/prisma.repository';
 import { PrismaService } from 'src/infrastructure/prisma/prisma.service';
 import { PageResult } from 'src/common/models';
+import { DecimalValue } from 'src/common/domain/value-objects';
 
 import {
   CommodityFilterContract,
@@ -160,10 +161,10 @@ export class PrismaCommodityRepository
       imdgClass: model.imdgClass,
       requiresReefer: model.requiresReefer,
       minTemperature: model.minTemperature
-        ? Number(model.minTemperature)
+        ? DecimalValue.of(model.minTemperature.toString())
         : null,
       maxTemperature: model.maxTemperature
-        ? Number(model.maxTemperature)
+        ? DecimalValue.of(model.maxTemperature.toString())
         : null,
       remarks: model.remarks,
       createdAt: model.createdAt,

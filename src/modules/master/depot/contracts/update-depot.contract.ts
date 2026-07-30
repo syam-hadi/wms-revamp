@@ -1,17 +1,6 @@
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { OmitType, PartialType } from '@nestjs/swagger';
+import { CreateDepotContract } from './create-depot.contract';
 
-export class UpdateDepotContract {
-  @ApiProperty({
-    description: 'Depot Name',
-    maxLength: 150,
-    example: 'Jakarta Distribution Center',
-  })
-  name: string;
-
-  @ApiPropertyOptional({
-    description: 'Depot Description',
-    maxLength: 100,
-    example: 'Main warehouse for western Indonesia',
-  })
-  description?: string;
-}
+export class UpdateDepotContract extends PartialType(
+  OmitType(CreateDepotContract, ['code'] as const),
+) {}

@@ -1,10 +1,6 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { OmitType, PartialType } from '@nestjs/swagger';
+import { CreatePortContract } from './create-port.contract';
 
-export class UpdatePortContract {
-  @ApiProperty({
-    description: 'Port Name',
-    maxLength: 150,
-    example: 'Port of Tanjung Priok',
-  })
-  name: string;
-}
+export class UpdatePortContract extends PartialType(
+  OmitType(CreatePortContract, ['code'] as const),
+) {}

@@ -12,6 +12,7 @@ import { CurrencyModule } from './modules/master/currency/currency.module';
 import { DepotModule } from './modules/master/depot/depot.module';
 import { PortModule } from './modules/master/port/port.module';
 import { UnitOfMeasurementModule } from './modules/master/unit-of-measurement/unit-of-measurement.module';
+import { VesselModule } from './modules/master/vessel/vessel.module';
 
 import {
   appConfig,
@@ -51,6 +52,7 @@ import { CodeGeneratorModule } from './common/code-generator/code-generator.modu
     DepotModule,
     PortModule,
     UnitOfMeasurementModule,
+    VesselModule,
   ],
   providers: [
     {

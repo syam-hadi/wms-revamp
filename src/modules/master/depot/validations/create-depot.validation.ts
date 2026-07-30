@@ -1,4 +1,4 @@
-import * as Joi from 'joi';
+import Joi from 'joi';
 
 export const CreateDepotValidation = Joi.object({
   code: Joi.string().required().uppercase().trim().max(20),

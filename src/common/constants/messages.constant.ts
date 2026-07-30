@@ -174,4 +174,13 @@ export const Messages = {
     NOT_FOUND: 'Unit of Measurement not found.',
     DUPLICATE_CODE: 'Unit of Measurement code already exists.',
   },
+
+  VESSEL: {
+    CREATED: 'Vessel created successfully.',
+    UPDATED: 'Vessel updated successfully.',
+    DELETED: 'Vessel deleted successfully.',
+
+    NOT_FOUND: 'Vessel not found.',
+    DUPLICATE_IMO: 'Vessel IMO Number already exists.',
+  },
 } as const;

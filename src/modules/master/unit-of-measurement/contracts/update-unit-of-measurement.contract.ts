@@ -1,25 +1,6 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { OmitType, PartialType } from '@nestjs/swagger';
+import { CreateUnitOfMeasurementContract } from './create-unit-of-measurement.contract';
 
-export class UpdateUnitOfMeasurementContract {
-  @ApiProperty({
-    description: 'Unit of Measurement Name',
-    maxLength: 150,
-    example: 'Kilogram',
-  })
-  name: string;
-
-  @ApiProperty({
-    description: 'Unit Symbol',
-    maxLength: 100,
-    example: 'kg',
-  })
-  unit: string;
-
-  @ApiProperty({
-    description: 'Description',
-    maxLength: 100,
-    example: 'Metric weight unit',
-    required: false,
-  })
-  description?: string;
-}
+export class UpdateUnitOfMeasurementContract extends PartialType(
+  OmitType(CreateUnitOfMeasurementContract, ['code'] as const),
+) {}

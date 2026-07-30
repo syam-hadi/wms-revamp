@@ -1,12 +1,13 @@
-import * as Joi from 'joi';
+import Joi from 'joi';
 
 export const UpdateCommodityValidation = Joi.object({
-  name: Joi.string().max(100).optional(),
-  hsCode: Joi.string().max(12).allow(null, '').optional(),
-  category: Joi.string().max(50).optional(),
+  name: Joi.string().trim().max(100).optional(),
+  hsCode: Joi.string().trim().max(12).allow(null, '').optional(),
+  category: Joi.string().trim().max(50).optional(),
 
   isHazardous: Joi.boolean().optional(),
   imdgClass: Joi.string()
+    .trim()
     .max(10)
     .when('isHazardous', {
       is: true,
@@ -32,5 +33,5 @@ export const UpdateCommodityValidation = Joi.object({
       otherwise: Joi.optional().allow(null, ''),
     }),
 
-  remarks: Joi.string().max(255).allow(null, '').optional(),
+  remarks: Joi.string().trim().max(255).allow(null, '').optional(),
 });

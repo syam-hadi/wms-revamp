@@ -234,3 +234,22 @@ model UnitOfMeasurement {
 
   @@map("m_unit_of_measurements")
 }
+
+model Vessel {
+  id           String   @id @default(uuid()) @db.Uuid
+  name         String   @db.VarChar(100)
+  imoNumber    String   @unique @map("imo_number") @db.VarChar(7)
+  callSign     String?  @map("call_sign") @db.VarChar(10)
+  grossTonnage Int?     @map("gross_tonnage")
+  teuCapacity  Int?     @map("teu_capacity")
+  loaMeters    Decimal? @map("loa_meters") @db.Decimal(5, 2)
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  createdBy String?   @map("created_by") @db.Uuid
+  updatedAt DateTime? @updatedAt @map("updated_at")
+  updatedBy String?   @map("updated_by") @db.Uuid
+  deletedAt DateTime? @map("deleted_at")
+  deletedBy String?   @map("deleted_by") @db.Uuid
+
+  @@map("m_vessels")
+}
