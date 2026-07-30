@@ -8,10 +8,12 @@ import { CacheKeys } from 'src/infrastructure/redis/constants/cache.keys';
 import { CacheTTL } from 'src/infrastructure/redis/constants/cache.ttl';
 import { CacheService } from 'src/infrastructure/redis/services/cache.service';
 import { CountryRepository } from '../repositories/country.repository';
-import { CountryFilterContract } from '../contracts/country-filter.contract';
+import {
+  CountryFilterContract,
+  CreateCountryContract,
+  UpdateCountryContract,
+} from '../contracts';
 import { CountryEntity } from '../entities/country.entity';
-import { CreateCountryContract } from '../contracts/create-country.contract';
-import { UpdateCountryContract } from '../contracts/update-country.contract';
 
 @Injectable()
 export class CountryService {

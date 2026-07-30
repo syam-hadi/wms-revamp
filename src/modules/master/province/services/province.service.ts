@@ -9,10 +9,12 @@ import { CacheTTL } from 'src/infrastructure/redis/constants/cache.ttl';
 import { CacheService } from 'src/infrastructure/redis/services/cache.service';
 
 import { ProvinceRepository } from '../repositories/province.repository';
-import { ProvinceFilterContract } from '../contracts/province-filter.contract';
+import {
+  ProvinceFilterContract,
+  CreateProvinceContract,
+  UpdateProvinceContract,
+} from '../contracts';
 import { ProvinceEntity } from '../entities/province.entity';
-import { CreateProvinceContract } from '../contracts/create-province.contract';
-import { UpdateProvinceContract } from '../contracts/update-province.contract';
 import { CountryRepository } from '../../country/repositories/country.repository';
 
 @Injectable()

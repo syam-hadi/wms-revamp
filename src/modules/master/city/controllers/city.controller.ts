@@ -21,10 +21,12 @@ import { CityService } from '../services/city.service';
 import { CurrentUserModel } from 'src/common/models/current-user.model';
 import { ApiGenericResponse } from 'src/common/swagger/decorators/api-generic-response.decorator';
 import { JoiValidationPipe } from 'src/common/validation/pipes/joi-validation.pipe';
-import { CityFilterContract } from '../contracts/city-filter.contract';
-import { CityContract } from '../contracts/city.contract';
-import { CreateCityContract } from '../contracts/create-city.contract';
-import { UpdateCityContract } from '../contracts/update-city.contract';
+import {
+  CityFilterContract,
+  CityContract,
+  CreateCityContract,
+  UpdateCityContract,
+} from '../contracts';
 import {
   CityFilterValidation,
   CreateCityValidation,

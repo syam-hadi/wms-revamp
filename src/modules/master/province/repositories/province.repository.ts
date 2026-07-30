@@ -1,7 +1,9 @@
 import { PageResult } from 'src/common/models';
-import { ProvinceFilterContract } from '../contracts/province-filter.contract';
-import { CreateProvinceContract } from '../contracts/create-province.contract';
-import { UpdateProvinceContract } from '../contracts/update-province.contract';
+import {
+  ProvinceFilterContract,
+  CreateProvinceContract,
+  UpdateProvinceContract,
+} from '../contracts';
 import { ProvinceEntity } from '../entities/province.entity';
 
 export abstract class ProvinceRepository {

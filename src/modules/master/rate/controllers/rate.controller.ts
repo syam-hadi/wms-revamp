@@ -21,10 +21,12 @@ import { RateEntity } from '../entities/rate.entity';
 import { CurrentUserModel } from 'src/common/models/current-user.model';
 import { ApiGenericResponse } from 'src/common/swagger/decorators/api-generic-response.decorator';
 import { JoiValidationPipe } from 'src/common/validation/pipes/joi-validation.pipe';
-import { RateFilterContract } from '../contracts/rate-filter.contract';
-import { RateContract } from '../contracts/rate.contract';
-import { CreateRateContract } from '../contracts/create-rate.contract';
-import { UpdateRateContract } from '../contracts/update-rate.contract';
+import {
+  RateFilterContract,
+  RateContract,
+  CreateRateContract,
+  UpdateRateContract,
+} from '../contracts';
 import {
   RateFilterValidation,
   CreateRateValidation,

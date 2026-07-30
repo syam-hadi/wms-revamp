@@ -6,9 +6,11 @@ import { PrismaService } from 'src/infrastructure/prisma/prisma.service';
 import { PageResult } from 'src/common/models';
 import { DecimalValue } from 'src/common/domain/value-objects';
 
-import { RateFilterContract } from '../contracts/rate-filter.contract';
-import { CreateRateContract } from '../contracts/create-rate.contract';
-import { UpdateRateContract } from '../contracts/update-rate.contract';
+import {
+  RateFilterContract,
+  CreateRateContract,
+  UpdateRateContract,
+} from '../contracts';
 import { RateEntity } from '../entities/rate.entity';
 import { RateRepository } from './rate.repository';
 

@@ -8,10 +8,12 @@ import { CacheKeys } from 'src/infrastructure/redis/constants/cache.keys';
 import { CacheTTL } from 'src/infrastructure/redis/constants/cache.ttl';
 import { CacheService } from 'src/infrastructure/redis/services/cache.service';
 import { CommodityRepository } from '../repositories/commodity.repository';
-import { CommodityFilterContract } from '../contracts/commodity-filter.contract';
+import {
+  CommodityFilterContract,
+  CreateCommodityContract,
+  UpdateCommodityContract,
+} from '../contracts';
 import { CommodityEntity } from '../entities/commodity.entity';
-import { CreateCommodityContract } from '../contracts/create-commodity.contract';
-import { UpdateCommodityContract } from '../contracts/update-commodity.contract';
 import { CodeGeneratorService } from 'src/common/code-generator/code-generator.service';
 import { CodeModule } from 'src/common/code-generator/code-generator.enum';
 

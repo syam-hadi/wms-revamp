@@ -5,9 +5,11 @@ import { PrismaRepository } from 'src/infrastructure/prisma/prisma.repository';
 import { PrismaService } from 'src/infrastructure/prisma/prisma.service';
 import { PageResult } from 'src/common/models';
 
-import { BankFilterContract } from '../contracts/bank-filter.contract';
-import { CreateBankContract } from '../contracts/create-bank.contract';
-import { UpdateBankContract } from '../contracts/update-bank.contract';
+import {
+  BankFilterContract,
+  CreateBankContract,
+  UpdateBankContract,
+} from '../contracts';
 import { BankEntity } from '../entities/bank.entity';
 import { BankRepository } from './bank.repository';
 

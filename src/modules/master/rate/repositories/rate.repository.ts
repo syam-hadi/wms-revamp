@@ -1,8 +1,10 @@
 import { PageResult } from 'src/common/models';
 import { RateEntity } from '../entities/rate.entity';
-import { RateFilterContract } from '../contracts/rate-filter.contract';
-import { CreateRateContract } from '../contracts/create-rate.contract';
-import { UpdateRateContract } from '../contracts/update-rate.contract';
+import {
+  RateFilterContract,
+  CreateRateContract,
+  UpdateRateContract,
+} from '../contracts';
 
 export interface RateRepository {
   findMany(filter: RateFilterContract): Promise<PageResult<RateEntity>>;

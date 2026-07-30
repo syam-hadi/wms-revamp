@@ -21,10 +21,12 @@ import { CountryService } from '../services/country.service';
 import { CurrentUserModel } from 'src/common/models/current-user.model';
 import { ApiGenericResponse } from 'src/common/swagger/decorators/api-generic-response.decorator';
 import { JoiValidationPipe } from 'src/common/validation/pipes/joi-validation.pipe';
-import { CountryFilterContract } from '../contracts/country-filter.contract';
-import { CountryContract } from '../contracts/country.contract';
-import { CreateCountryContract } from '../contracts/create-country.contract';
-import { UpdateCountryContract } from '../contracts/update-country.contract';
+import {
+  CountryFilterContract,
+  CountryContract,
+  CreateCountryContract,
+  UpdateCountryContract,
+} from '../contracts';
 import {
   CountryFilterValidation,
   CreateCountryValidation,

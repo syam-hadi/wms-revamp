@@ -5,9 +5,11 @@ import { PrismaRepository } from 'src/infrastructure/prisma/prisma.repository';
 import { PrismaService } from 'src/infrastructure/prisma/prisma.service';
 import { PageResult } from 'src/common/models';
 
-import { CommodityFilterContract } from '../contracts/commodity-filter.contract';
-import { CreateCommodityContract } from '../contracts/create-commodity.contract';
-import { UpdateCommodityContract } from '../contracts/update-commodity.contract';
+import {
+  CommodityFilterContract,
+  CreateCommodityContract,
+  UpdateCommodityContract,
+} from '../contracts';
 import { CommodityEntity } from '../entities/commodity.entity';
 import { CommodityRepository } from './commodity.repository';
 

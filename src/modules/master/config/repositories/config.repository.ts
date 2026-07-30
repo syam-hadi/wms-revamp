@@ -1,7 +1,9 @@
 import { PageResult } from 'src/common/models';
-import { ConfigFilterContract } from '../contracts/config-filter.contract';
-import { CreateConfigContract } from '../contracts/create-config.contract';
-import { UpdateConfigContract } from '../contracts/update-config.contract';
+import {
+  ConfigFilterContract,
+  CreateConfigContract,
+  UpdateConfigContract,
+} from '../contracts';
 import { ConfigEntity } from '../entities/config.entity';
 
 export abstract class ConfigRepository {

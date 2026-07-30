@@ -21,10 +21,12 @@ import { ProvinceService } from '../services/province.service';
 import { CurrentUserModel } from 'src/common/models/current-user.model';
 import { ApiGenericResponse } from 'src/common/swagger/decorators/api-generic-response.decorator';
 import { JoiValidationPipe } from 'src/common/validation/pipes/joi-validation.pipe';
-import { CreateProvinceContract } from '../contracts/create-province.contract';
-import { ProvinceFilterContract } from '../contracts/province-filter.contract';
-import { ProvinceContract } from '../contracts/province.contract';
-import { UpdateProvinceContract } from '../contracts/update-province.contract';
+import {
+  CreateProvinceContract,
+  ProvinceFilterContract,
+  ProvinceContract,
+  UpdateProvinceContract,
+} from '../contracts';
 import {
   CreateProvinceValidation,
   ProvinceFilterValidation,

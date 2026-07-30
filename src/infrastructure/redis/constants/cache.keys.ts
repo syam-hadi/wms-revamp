@@ -60,4 +60,13 @@ export class CacheKeys {
     detail: (id: string) => `${prefix}:rate:${id}`,
     list: () => `${prefix}:rate:list`,
   };
+
+  static currency = {
+    detail: (id: string) => `${prefix}:currency:${id}`,
+    list: () => `${prefix}:currency:list`,
+  };
+  static depot = {
+    detail: (id: string) => `${prefix}:depot:${id}`,
+    list: () => `${prefix}:depot:list`,
+  };
 }

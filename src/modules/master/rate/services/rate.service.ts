@@ -8,9 +8,11 @@ import { CacheKeys } from 'src/infrastructure/redis/constants/cache.keys';
 import { CacheTTL } from 'src/infrastructure/redis/constants/cache.ttl';
 import { CacheService } from 'src/infrastructure/redis/services/cache.service';
 import { RateRepository } from '../repositories/rate.repository';
-import { RateFilterContract } from '../contracts/rate-filter.contract';
-import { CreateRateContract } from '../contracts/create-rate.contract';
-import { UpdateRateContract } from '../contracts/update-rate.contract';
+import {
+  RateFilterContract,
+  CreateRateContract,
+  UpdateRateContract,
+} from '../contracts';
 import { RateEntity } from '../entities/rate.entity';
 
 @Injectable()

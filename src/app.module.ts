@@ -8,6 +8,8 @@ import { BankModule } from './modules/master/bank/bank.module';
 import { TaxModule } from './modules/master/tax/tax.module';
 import { CommodityModule } from './modules/master/commodity/commodity.module';
 import { RateModule } from './modules/master/rate/rate.module';
+import { CurrencyModule } from './modules/master/currency/currency.module';
+import { DepotModule } from './modules/master/depot/depot.module';
 
 import {
   appConfig,
@@ -43,6 +45,8 @@ import { CodeGeneratorModule } from './common/code-generator/code-generator.modu
     TaxModule,
     CommodityModule,
     RateModule,
+    CurrencyModule,
+    DepotModule,
   ],
   providers: [
     {

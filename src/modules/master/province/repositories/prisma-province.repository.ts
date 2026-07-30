@@ -5,9 +5,11 @@ import { PrismaRepository } from 'src/infrastructure/prisma/prisma.repository';
 import { PrismaService } from 'src/infrastructure/prisma/prisma.service';
 import { PageResult } from 'src/common/models';
 
-import { ProvinceFilterContract } from '../contracts/province-filter.contract';
-import { CreateProvinceContract } from '../contracts/create-province.contract';
-import { UpdateProvinceContract } from '../contracts/update-province.contract';
+import {
+  ProvinceFilterContract,
+  CreateProvinceContract,
+  UpdateProvinceContract,
+} from '../contracts';
 import { ProvinceEntity } from '../entities/province.entity';
 import { ProvinceRepository } from './province.repository';
 

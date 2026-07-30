@@ -21,10 +21,12 @@ import { ConfigService } from '../services/config.service';
 import { CurrentUserModel } from 'src/common/models/current-user.model';
 import { ApiGenericResponse } from 'src/common/swagger/decorators/api-generic-response.decorator';
 import { JoiValidationPipe } from 'src/common/validation/pipes/joi-validation.pipe';
-import { ConfigFilterContract } from '../contracts/config-filter.contract';
-import { ConfigContract } from '../contracts/config.contract';
-import { CreateConfigContract } from '../contracts/create-config.contract';
-import { UpdateConfigContract } from '../contracts/update-config.contract';
+import {
+  ConfigFilterContract,
+  ConfigContract,
+  CreateConfigContract,
+  UpdateConfigContract,
+} from '../contracts';
 import {
   ConfigFilterValidation,
   CreateConfigValidation,

@@ -1,7 +1,9 @@
 import { PageResult } from 'src/common/models';
-import { CountryFilterContract } from '../contracts/country-filter.contract';
-import { CreateCountryContract } from '../contracts/create-country.contract';
-import { UpdateCountryContract } from '../contracts/update-country.contract';
+import {
+  CountryFilterContract,
+  CreateCountryContract,
+  UpdateCountryContract,
+} from '../contracts';
 import { CountryEntity } from '../entities/country.entity';
 
 export abstract class CountryRepository {

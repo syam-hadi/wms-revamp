@@ -8,10 +8,12 @@ import { CacheKeys } from 'src/infrastructure/redis/constants/cache.keys';
 import { CacheTTL } from 'src/infrastructure/redis/constants/cache.ttl';
 import { CacheService } from 'src/infrastructure/redis/services/cache.service';
 import { TaxRepository } from '../repositories/tax.repository';
-import { TaxFilterContract } from '../contracts/tax-filter.contract';
+import {
+  TaxFilterContract,
+  CreateTaxContract,
+  UpdateTaxContract,
+} from '../contracts';
 import { TaxEntity } from '../entities/tax.entity';
-import { CreateTaxContract } from '../contracts/create-tax.contract';
-import { UpdateTaxContract } from '../contracts/update-tax.contract';
 import { CodeGeneratorService } from 'src/common/code-generator/code-generator.service';
 import { CodeModule } from 'src/common/code-generator/code-generator.enum';
 

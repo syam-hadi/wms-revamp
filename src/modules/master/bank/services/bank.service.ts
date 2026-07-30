@@ -8,10 +8,12 @@ import { CacheKeys } from 'src/infrastructure/redis/constants/cache.keys';
 import { CacheTTL } from 'src/infrastructure/redis/constants/cache.ttl';
 import { CacheService } from 'src/infrastructure/redis/services/cache.service';
 import { BankRepository } from '../repositories/bank.repository';
-import { BankFilterContract } from '../contracts/bank-filter.contract';
+import {
+  BankFilterContract,
+  CreateBankContract,
+  UpdateBankContract,
+} from '../contracts';
 import { BankEntity } from '../entities/bank.entity';
-import { CreateBankContract } from '../contracts/create-bank.contract';
-import { UpdateBankContract } from '../contracts/update-bank.contract';
 import { CodeGeneratorService } from 'src/common/code-generator/code-generator.service';
 import { CodeModule } from 'src/common/code-generator/code-generator.enum';
 

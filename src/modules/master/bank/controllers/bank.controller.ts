@@ -21,10 +21,12 @@ import { BankService } from '../services/bank.service';
 import { CurrentUserModel } from 'src/common/models/current-user.model';
 import { ApiGenericResponse } from 'src/common/swagger/decorators/api-generic-response.decorator';
 import { JoiValidationPipe } from 'src/common/validation/pipes/joi-validation.pipe';
-import { BankFilterContract } from '../contracts/bank-filter.contract';
-import { BankContract } from '../contracts/bank.contract';
-import { CreateBankContract } from '../contracts/create-bank.contract';
-import { UpdateBankContract } from '../contracts/update-bank.contract';
+import {
+  BankFilterContract,
+  BankContract,
+  CreateBankContract,
+  UpdateBankContract,
+} from '../contracts';
 import {
   BankFilterValidation,
   CreateBankValidation,

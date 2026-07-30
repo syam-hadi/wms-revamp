@@ -6,9 +6,11 @@ import { PrismaService } from 'src/infrastructure/prisma/prisma.service';
 import { PageResult } from 'src/common/models';
 import { DecimalValue } from 'src/common/domain/value-objects';
 
-import { TaxFilterContract } from '../contracts/tax-filter.contract';
-import { CreateTaxContract } from '../contracts/create-tax.contract';
-import { UpdateTaxContract } from '../contracts/update-tax.contract';
+import {
+  TaxFilterContract,
+  CreateTaxContract,
+  UpdateTaxContract,
+} from '../contracts';
 import { TaxEntity } from '../entities/tax.entity';
 import { TaxRepository } from './tax.repository';
 

@@ -8,10 +8,12 @@ import { CacheKeys } from 'src/infrastructure/redis/constants/cache.keys';
 import { CacheTTL } from 'src/infrastructure/redis/constants/cache.ttl';
 import { CacheService } from 'src/infrastructure/redis/services/cache.service';
 import { ConfigRepository } from '../repositories/config.repository';
-import { ConfigFilterContract } from '../contracts/config-filter.contract';
+import {
+  ConfigFilterContract,
+  CreateConfigContract,
+  UpdateConfigContract,
+} from '../contracts';
 import { ConfigEntity } from '../entities/config.entity';
-import { CreateConfigContract } from '../contracts/create-config.contract';
-import { UpdateConfigContract } from '../contracts/update-config.contract';
 import { CodeGeneratorService } from 'src/common/code-generator/code-generator.service';
 import { CodeModule } from 'src/common/code-generator/code-generator.enum';
 

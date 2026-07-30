@@ -139,4 +139,21 @@ export const Messages = {
 
     NOT_FOUND: 'Rate not found.',
   },
+
+  CURRENCY: {
+    CREATED: 'Currency created successfully.',
+    UPDATED: 'Currency updated successfully.',
+    DELETED: 'Currency deleted successfully.',
+
+    NOT_FOUND: 'Currency not found.',
+    DUPLICATE_CODE: 'Currency code already exists.',
+  },
+  DEPOT: {
+    CREATED: 'Depot created successfully.',
+    UPDATED: 'Depot updated successfully.',
+    DELETED: 'Depot deleted successfully.',
+
+    NOT_FOUND: 'Depot not found.',
+    DUPLICATE_CODE: 'Depot code already exists.',
+  },
 } as const;

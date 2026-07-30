@@ -21,10 +21,12 @@ import { TaxService } from '../services/tax.service';
 import { CurrentUserModel } from 'src/common/models/current-user.model';
 import { ApiGenericResponse } from 'src/common/swagger/decorators/api-generic-response.decorator';
 import { JoiValidationPipe } from 'src/common/validation/pipes/joi-validation.pipe';
-import { TaxFilterContract } from '../contracts/tax-filter.contract';
-import { TaxContract } from '../contracts/tax.contract';
-import { CreateTaxContract } from '../contracts/create-tax.contract';
-import { UpdateTaxContract } from '../contracts/update-tax.contract';
+import {
+  TaxFilterContract,
+  TaxContract,
+  CreateTaxContract,
+  UpdateTaxContract,
+} from '../contracts';
 import {
   TaxFilterValidation,
   CreateTaxValidation,

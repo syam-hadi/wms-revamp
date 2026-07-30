@@ -6,9 +6,11 @@ import { PrismaService } from 'src/infrastructure/prisma/prisma.service';
 import { PageResult } from 'src/common/models';
 
 import { Prisma, Status } from '@prisma/client';
-import { ConfigFilterContract } from '../contracts/config-filter.contract';
-import { CreateConfigContract } from '../contracts/create-config.contract';
-import { UpdateConfigContract } from '../contracts/update-config.contract';
+import {
+  ConfigFilterContract,
+  CreateConfigContract,
+  UpdateConfigContract,
+} from '../contracts';
 import { ConfigEntity } from '../entities/config.entity';
 import { ConfigRepository } from './config.repository';
 

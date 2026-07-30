@@ -1,7 +1,9 @@
 import { PageResult } from 'src/common/models';
-import { BankFilterContract } from '../contracts/bank-filter.contract';
-import { CreateBankContract } from '../contracts/create-bank.contract';
-import { UpdateBankContract } from '../contracts/update-bank.contract';
+import {
+  BankFilterContract,
+  CreateBankContract,
+  UpdateBankContract,
+} from '../contracts';
 import { BankEntity } from '../entities/bank.entity';
 
 export abstract class BankRepository {

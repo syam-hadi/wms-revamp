@@ -5,9 +5,11 @@ import { PrismaRepository } from 'src/infrastructure/prisma/prisma.repository';
 import { PrismaService } from 'src/infrastructure/prisma/prisma.service';
 import { PageResult } from 'src/common/models';
 
-import { CityFilterContract } from '../contracts/city-filter.contract';
-import { CreateCityContract } from '../contracts/create-city.contract';
-import { UpdateCityContract } from '../contracts/update-city.contract';
+import {
+  CityFilterContract,
+  CreateCityContract,
+  UpdateCityContract,
+} from '../contracts';
 import { CityEntity } from '../entities/city.entity';
 import { CityRepository } from './city.repository';
 

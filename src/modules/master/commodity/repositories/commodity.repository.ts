@@ -1,8 +1,10 @@
 import { PageResult } from 'src/common/models';
 import { CommodityEntity } from '../entities/commodity.entity';
-import { CommodityFilterContract } from '../contracts/commodity-filter.contract';
-import { CreateCommodityContract } from '../contracts/create-commodity.contract';
-import { UpdateCommodityContract } from '../contracts/update-commodity.contract';
+import {
+  CommodityFilterContract,
+  CreateCommodityContract,
+  UpdateCommodityContract,
+} from '../contracts';
 
 export interface CommodityRepository {
   findMany(

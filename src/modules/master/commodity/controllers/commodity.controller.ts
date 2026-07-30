@@ -21,10 +21,12 @@ import { CommodityService } from '../services/commodity.service';
 import { CurrentUserModel } from 'src/common/models/current-user.model';
 import { ApiGenericResponse } from 'src/common/swagger/decorators/api-generic-response.decorator';
 import { JoiValidationPipe } from 'src/common/validation/pipes/joi-validation.pipe';
-import { CommodityFilterContract } from '../contracts/commodity-filter.contract';
-import { CommodityContract } from '../contracts/commodity.contract';
-import { CreateCommodityContract } from '../contracts/create-commodity.contract';
-import { UpdateCommodityContract } from '../contracts/update-commodity.contract';
+import {
+  CommodityFilterContract,
+  CommodityContract,
+  CreateCommodityContract,
+  UpdateCommodityContract,
+} from '../contracts';
 import {
   CommodityFilterValidation,
   CreateCommodityValidation,
