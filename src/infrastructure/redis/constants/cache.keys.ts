@@ -69,4 +69,14 @@ export class CacheKeys {
     detail: (id: string) => `${prefix}:depot:${id}`,
     list: () => `${prefix}:depot:list`,
   };
+
+  static port = {
+    detail: (id: string) => `${prefix}:port:${id}`,
+    list: () => `${prefix}:port:list`,
+  };
+
+  static unitOfMeasurement = {
+    detail: (id: string) => `${prefix}:uom:${id}`,
+    list: () => `${prefix}:uom:list`,
+  };
 }

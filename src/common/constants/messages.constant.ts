@@ -156,4 +156,22 @@ export const Messages = {
     NOT_FOUND: 'Depot not found.',
     DUPLICATE_CODE: 'Depot code already exists.',
   },
+
+  PORT: {
+    CREATED: 'Port created successfully.',
+    UPDATED: 'Port updated successfully.',
+    DELETED: 'Port deleted successfully.',
+
+    NOT_FOUND: 'Port not found.',
+    DUPLICATE_CODE: 'Port code already exists.',
+  },
+
+  UNIT_OF_MEASUREMENT: {
+    CREATED: 'Unit of Measurement created successfully.',
+    UPDATED: 'Unit of Measurement updated successfully.',
+    DELETED: 'Unit of Measurement deleted successfully.',
+
+    NOT_FOUND: 'Unit of Measurement not found.',
+    DUPLICATE_CODE: 'Unit of Measurement code already exists.',
+  },
 } as const;

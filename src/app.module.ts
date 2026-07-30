@@ -10,6 +10,8 @@ import { CommodityModule } from './modules/master/commodity/commodity.module';
 import { RateModule } from './modules/master/rate/rate.module';
 import { CurrencyModule } from './modules/master/currency/currency.module';
 import { DepotModule } from './modules/master/depot/depot.module';
+import { PortModule } from './modules/master/port/port.module';
+import { UnitOfMeasurementModule } from './modules/master/unit-of-measurement/unit-of-measurement.module';
 
 import {
   appConfig,
@@ -47,6 +49,8 @@ import { CodeGeneratorModule } from './common/code-generator/code-generator.modu
     RateModule,
     CurrencyModule,
     DepotModule,
+    PortModule,
+    UnitOfMeasurementModule,
   ],
   providers: [
     {

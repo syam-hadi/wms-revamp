@@ -202,3 +202,35 @@ model Depot {
 
   @@map("m_depots")
 }
+
+model Port {
+  id        String  @id @default(uuid()) @db.Uuid
+  code      String  @unique @db.VarChar(20)
+  name      String  @db.VarChar(150)
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  createdBy String?   @map("created_by") @db.Uuid
+  updatedAt DateTime? @updatedAt @map("updated_at")
+  updatedBy String?   @map("updated_by") @db.Uuid
+  deletedAt DateTime? @map("deleted_at")
+  deletedBy String?   @map("deleted_by") @db.Uuid
+
+  @@map("m_ports")
+}
+
+model UnitOfMeasurement {
+  id          String  @id @default(uuid()) @db.Uuid
+  code        String  @unique @db.VarChar(20)
+  name        String  @db.VarChar(150)
+  unit        String  @db.VarChar(100)
+  description String? @db.VarChar(100)
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  createdBy String?   @map("created_by") @db.Uuid
+  updatedAt DateTime? @updatedAt @map("updated_at")
+  updatedBy String?   @map("updated_by") @db.Uuid
+  deletedAt DateTime? @map("deleted_at")
+  deletedBy String?   @map("deleted_by") @db.Uuid
+
+  @@map("m_unit_of_measurements")
+}

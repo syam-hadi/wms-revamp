@@ -20,4 +20,6 @@ export const CacheTTL = {
   RATE: 60 * 60,
   CURRENCY: 60 * 60,
   DEPOT: 60 * 60,
+  PORT: 60 * 60,
+  UNIT_OF_MEASUREMENT: 60 * 60,
 } as const;
